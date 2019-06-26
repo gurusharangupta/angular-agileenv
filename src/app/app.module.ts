@@ -8,8 +8,11 @@ import { HeaderComponent } from './header/header.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectService } from './projects/project.service';
 import { Routes, RouterModule } from '@angular/router';
+import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 
-const appRoutes: Routes = [{ path: 'projects', component: ProjectsComponent },
+const appRoutes: Routes = [{ path: 'projects', component: ProjectsComponent, children: [
+  { path: 'new', component: ProjectEditComponent }
+] },
 { path: '',
     redirectTo: '/projects',
     pathMatch: 'full' },
@@ -17,7 +20,7 @@ const appRoutes: Routes = [{ path: 'projects', component: ProjectsComponent },
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes) ],
-  declarations: [ AppComponent, HelloComponent, HeaderComponent, ProjectsComponent ],
+  declarations: [ AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ProjectService]
 })
