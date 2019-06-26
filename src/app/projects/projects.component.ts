@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './project.service';
 import { Project } from '../model/project.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -9,12 +10,13 @@ import { Project } from '../model/project.model';
 })
 export class ProjectsComponent implements OnInit {
 
-  projects: Project[] = [];
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
-    this.projects = this.projectService.fetchProject();
+   
   }
+
+ 
 
 
 }

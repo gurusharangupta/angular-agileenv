@@ -1,8 +1,10 @@
 <div class="row">
 	<div class="col-xs-12">
-		<form>
-			<div class="form-group">
-				<label for="name">Project Name</label>
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<form>
+					<div class="form-group">
+						<label for="name">Project Name</label>
         <input type="text" class="form-control">
       </div>
 
@@ -18,9 +20,13 @@
 
       <div class="form-group">
         <label for="date">Date</label>
-        <input type="text" class="form-control">
+        <input type="date" class="form-control">
       </div>
-      
+    <button type="button" class="btn btn-primary" [routerLink]="['/projects']">
+    Back To Projects
+    </button>
     </form>
+    </div>
+</div>
   </div>
 </div>

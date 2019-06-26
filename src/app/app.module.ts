@@ -9,19 +9,25 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ProjectService } from './projects/project.service';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { ProjectListComponent } from './projects/project-list/project-list.component';
 
-const appRoutes: Routes = [{ path: 'projects', component: ProjectsComponent, children: [
-  { path: 'new', component: ProjectEditComponent }
-] },
-{ path: '',
-    redirectTo: '/projects',
-    pathMatch: 'full' },
+const appRoutes: Routes = [{
+  path: 'projects', component: ProjectsComponent, children: [
+    { path: '', component: ProjectListComponent, pathMatch: 'full' },
+    { path: 'new', component: ProjectEditComponent }
+  ]
+},
+{
+  path: '',
+  redirectTo: '/projects',
+  pathMatch: 'full'
+},
 { path: '**', component: ProjectsComponent }];
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, RouterModule.forRoot(appRoutes) ],
-  declarations: [ AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent ],
-  bootstrap:    [ AppComponent ],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent],
+  bootstrap: [AppComponent],
   providers: [ProjectService]
 })
 export class AppModule { }
