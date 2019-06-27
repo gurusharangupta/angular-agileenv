@@ -5,12 +5,12 @@ import { UserStory } from '../model/user-story.model';
 @Injectable()
 export class SprintService {
 
-productBacklog: ProductBacklog =new ProductBacklog('ING-BANKING',[
-  new UserStory('Recipe service','Its a recipe service','Gurusharan')
-],true);
+  productBacklog: ProductBacklog = new ProductBacklog('ING-BANKING', [
+    new UserStory('Recipe service', 'Its a recipe service', 'Gurusharan')
+  ], true);
   constructor() { }
 
-fetchProductBacklog(){
-  return this.productBacklog.slice();
-}
+  fetchProductBacklog() {
+    return this.productBacklog.slice();
+  }
 }

@@ -7,13 +7,14 @@ import { SprintService } from '../sprint.service';
   styleUrls: ['./sprint-planning.component.css']
 })
 export class SprintPlanningComponent implements OnInit {
-  editMode: boolean = false;
+  backlogEditMode: boolean = false;
+
   constructor(private sprintService: SprintService) { }
 
   ngOnInit() {
-    console.log('planning phase');
+    this.sprintService.fetchProductBacklog();
   }
   editProductBacklog() {
-    this.editMode = true;
+    this.backlogEditMode = true;
   }
 }
