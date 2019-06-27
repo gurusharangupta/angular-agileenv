@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectOverviewComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private routes:) { }
+  phase: string;
   ngOnInit() {
+
   }
 
 }
