@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamMemberComponent implements OnInit {
 
+teamMemberForm: Ng
   constructor() { }
 
   ngOnInit() {
+
+    this.initForm();
+  }
+
+  initForm(){
+
   }
 
 }
