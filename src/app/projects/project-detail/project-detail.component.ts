@@ -11,15 +11,20 @@ import { ProjectService } from '../project.service';
 export class ProjectDetailComponent implements OnInit {
 
   project: Project;
+  id: number;
   constructor(private routes: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit() {
     this.routes.params.subscribe(
       params => {
+        this.id = +params['id'];
           this.project = this.projectService.fetchProjectById(+params['id']);
           
       }
-    )
+    );
+    this.projectService.projectChange.subscribe( project => {
+      this.project = project[this.id];
+    });
   }
 
 }
