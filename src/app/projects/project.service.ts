@@ -8,10 +8,10 @@ export class ProjectService {
   projectChange = new Subject<Project[]>();
 
   projects: Project[] = [
-    new Project('ING-Banking', 'Banking realted to ING', 'Nickolas', new Date(), [new TeamMember('Gurusharan', 'Developer')]),
-    new Project('ING-Payment', 'Payments related Banking', 'Gabriel', new Date(), [new TeamMember('Gurusharan', 'Developer')]),
-    new Project('ING-Wire Transfer', 'Payments related Banking', 'Gabriel', new Date(), [new TeamMember('Gurusharan', 'Developer')]),
-    new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), [new TeamMember('Gurusharan', 'Developer')])
+    new Project('ING-Banking', 'Banking realted to ING', 'Nickolas', new Date(),'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+    new Project('ING-Payment', 'Payments related Banking', 'Gabriel', new Date(),'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+    new Project('ING-Wire Transfer', 'Payments related Banking', 'Gabriel', new Date(),'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+    new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(),'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
   ];
 
   constructor() { }

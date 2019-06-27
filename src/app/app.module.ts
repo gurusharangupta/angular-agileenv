@@ -13,6 +13,7 @@ import { ProjectListComponent } from './projects/project-list/project-list.compo
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TeamMemberComponent } from './projects/project-detail/team-member/team-member.component';
 import { ProjectOverviewComponent } from './projects/project-detail/project-overview/project-overview.component';
+import { SprintPlanningComponent } from './sprint/sprint-planning/sprint-planning.component';
 
 const appRoutes: Routes = [{
   path: 'projects', component: ProjectsComponent, children: [
@@ -33,7 +34,7 @@ const appRoutes: Routes = [{
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule],
-  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService]
 })

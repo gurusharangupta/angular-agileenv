@@ -4,7 +4,7 @@
 			<button class="btn btn-info" (click)="newProject()">+ New Project</button>
     </div>
     <div class="col-xs-2" *ngFor="let project of projects;let i = index">
-      <span class="projectbox" style="cursor: pointer;" (click)="toProject(i)">
+      <span class="showbox" style="cursor: pointer;" (click)="toProject(i)">
         <label for="project">{{project.name}}</label>
         </span>
     </div>
