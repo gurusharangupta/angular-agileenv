@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
+import { TeamMemberComponent } from './projects/project-detail/team-member/team-member.component';
 
 const appRoutes: Routes = [{
   path: 'projects', component: ProjectsComponent, children: [
@@ -18,7 +19,9 @@ const appRoutes: Routes = [{
     { path: 'new', component: ProjectEditComponent }
   ]
 },
-{path: 'projects/:id', component: ProjectDetailComponent},
+{path: 'projects/:id', component: ProjectDetailComponent, children: [
+  { path: 'teammember', component: TeamMemberComponent }
+]},
 {
   path: '',
   redirectTo: '/projects',
@@ -28,7 +31,7 @@ const appRoutes: Routes = [{
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService]
 })
