@@ -10,6 +10,7 @@ import { ProjectService } from './projects/project.service';
 import { Routes, RouterModule } from '@angular/router';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
+import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 
 const appRoutes: Routes = [{
   path: 'projects', component: ProjectsComponent, children: [
@@ -17,6 +18,7 @@ const appRoutes: Routes = [{
     { path: 'new', component: ProjectEditComponent }
   ]
 },
+{path: 'projects/:id', component: ProjectDetailComponent},
 {
   path: '',
   redirectTo: '/projects',
@@ -26,7 +28,7 @@ const appRoutes: Routes = [{
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService]
 })

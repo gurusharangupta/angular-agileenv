@@ -14,4 +14,8 @@ export class ProjectService {
   public fetchProject() {
     return this.projects.slice();
   }
+
+  public fetchProjectById(index: number){
+    return this.projects.slice()[index];
+  }
 }

@@ -3,8 +3,8 @@
     <div class="col-xs-3">
       <button class="btn btn-info" (click)="newProject()">+ New Project</button>
     </div>
-    <div class="col-xs-3" *ngFor="let project of projects">
-      <span class="projectbox" style="cursor: pointer;">
+    <div class="col-xs-2" *ngFor="let project of projects;let i = index">
+      <span class="projectbox" style="cursor: pointer;" (click)="toProject(i)">
         <label for="project">{{project.name}}</label>
         
         </span>
