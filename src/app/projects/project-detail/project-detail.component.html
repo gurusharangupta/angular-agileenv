@@ -12,12 +12,9 @@
          <button type="button" class="btn btn-info" [routerLink]="['teammember']">+ Add/Edit Team Members</button>
           <hr>
 
-          	<ul class="list-group">
-				<a class="list-group-item">
-					Gurusharan Gupta
-					</a>
-          <a class="list-group-item">
-						 Ankit Saxena
+          	<ul class="list-group" >
+				<a class="list-group-item" *ngFor="let member of project.teamMembers">
+					{{member.name}}({{member.expertise}})
 					</a>
 				</ul>   
     </div>

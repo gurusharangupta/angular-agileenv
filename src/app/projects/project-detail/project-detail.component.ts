@@ -17,6 +17,7 @@ export class ProjectDetailComponent implements OnInit {
     this.routes.params.subscribe(
       params => {
           this.project = this.projectService.fetchProjectById(+params['id']);
+          
       }
     )
   }

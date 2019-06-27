@@ -13,6 +13,7 @@ export class ProjectListComponent implements OnInit {
   constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
+     
     this.projects = this.projectService.fetchProject();
   }
 
@@ -20,7 +21,6 @@ export class ProjectListComponent implements OnInit {
        this.router.navigate(['/projects/new']);
   }
   toProject(index: number){
-    this.router.navigate([index],{relativeTo: this.routes})
-    console.log(index);
+    this.router.navigate([index],{relativeTo: this.routes});
   }
 }
