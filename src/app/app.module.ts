@@ -12,6 +12,7 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ProjectDetailComponent } from './projects/project-detail/project-detail.component';
 import { TeamMemberComponent } from './projects/project-detail/team-member/team-member.component';
+import { ProjectOverviewComponent } from './projects/project-detail/project-overview/project-overview.component';
 
 const appRoutes: Routes = [{
   path: 'projects', component: ProjectsComponent, children: [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [{
   ]
 },
 {path: 'projects/:id', component: ProjectDetailComponent, children: [
+   { path: '', component: ProjectOverviewComponent, pathMatch: 'full' },
   { path: 'teammember', component: TeamMemberComponent }
 ]},
 {
@@ -31,7 +33,7 @@ const appRoutes: Routes = [{
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
-  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService]
 })
