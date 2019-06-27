@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-project-overview',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectOverviewComponent implements OnInit {
 
-  constructor(private routes:) { }
+  constructor(private routes:ActivatedRoute) { }
   phase: string;
   ngOnInit() {
-
+    
   }
 
 }
