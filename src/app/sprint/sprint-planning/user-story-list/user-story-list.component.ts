@@ -9,25 +9,15 @@ import { UserStory } from '../../../model/user-story.model';
 export class UserStoryListComponent implements OnInit {
 
   @Input() userStories: UserStory[];
-  editMode: boolean;
+  @Input() backlogEditMode: boolean;
   @Output() editChange = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit() {
   }
   editProductBacklog() {
-    console.log(this.editMode);
-    this.editMode = !this.editMode;
-  }
-
-@Input()
-  get backlogEditMode(){
-    console.log(this.editMode);
-    return this.editMode;
-  }
-  
-  set backlogEditMode(editMode: boolean){
-    this.editMode = editMode;
-    this.editChange.emit(this.editMode);
+    console.log(this.backlogEditMode);
+    this.backlogEditMode = !this.backlogEditMode;
+    this.editChange.emit(this.backlogEditMode);
   }
 }

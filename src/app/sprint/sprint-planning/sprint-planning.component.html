@@ -5,6 +5,6 @@
   </span>
     </div>
     </div>
-<div class="row" *ngIf="backlogEditMode" style="margin-top:5px;">
-<app-user-story-list [(backlogEditMode)]="backlogEditMode" [userStories]="productBacklog.userStory"></app-user-story-list>
-</div>
+
+  <router-outlet></router-outlet>
+<app-user-story-list [backlogEditMode]="backlogEditMode" [userStories]="productBacklog.userStory" (editChange)="changeEditMode($event)"></app-user-story-list>

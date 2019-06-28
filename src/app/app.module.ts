@@ -26,9 +26,9 @@ const appRoutes: Routes = [{
 },
 {
   path: 'projects/:id', component: ProjectDetailComponent, children: [
-    { path: '', component: ProjectOverviewComponent, pathMatch: 'full' },
+    { path: '', component: ProjectOverviewComponent },
     { path: 'teammember', component: TeamMemberComponent },
-    {path: 'userstory', component: UserStoryListComponent}
+    { path: 'userstory', component: UserStoryListComponent }
   ]
 },
 {
