@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { ProjectService } from '../../project.service';
+import { Project } from '../../../model/project.model';
 
 @Component({
   selector: 'app-project-overview',
@@ -10,11 +11,11 @@ import { ProjectService } from '../../project.service';
 export class ProjectOverviewComponent implements OnInit {
 
   constructor(private routes: ActivatedRoute, private projectService: ProjectService) { }
-  phase: string;
+  project: Project;
   ngOnInit() {
     this.routes.params.subscribe(
       params => {
-        this.phase = this.projectService.fetchProjectById(+params['id']).projectPhase;
+        this.project = this.projectService.fetchProjectById(+params['id']);
       }
     )
   }

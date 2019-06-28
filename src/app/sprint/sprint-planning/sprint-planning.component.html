@@ -1,6 +1,19 @@
-<div class="col-xs-12">
-	<span class="showbox" style="cursor: pointer;" (click)="editProductBacklog()">
-        <label for="project">+ Sprint Planning</label>
+<div class="row" *ngIf="!backlogEditMode">
+	<div class="col-xs-12">
+		<span [className]="productBacklog?'showbox greenbox':'showbox'" style="cursor: pointer;" (click)="editProductBacklog()">
+        <label for="productBacklog">{{ productBacklog?'Product Backlog':'+ Product Backlog'}}</label>
   </span>
-
     </div>
+    </div>
+
+    <div class="row" *ngIf="!backlogEditMode">
+	<div class="col-xs-12">
+<a class="list-group-item clearfix" *ngFor="let userStory of productBacklog.userStory">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{userStory.name}}</h4>
+    <p class="list-group-item-text">{{userStory.description}}</p>
+  </div>
+  
+</a>
+  </div>
+</div>
