@@ -28,6 +28,6 @@ export class UserStoryListComponent implements OnInit {
   
   set backlogEditMode(editMode: boolean){
     this.editMode = editMode;
-    this.editChange.emit(this.editMode)
+    this.editChange.emit(this.editMode);
   }
 }
