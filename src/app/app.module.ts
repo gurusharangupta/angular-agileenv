@@ -15,6 +15,8 @@ import { TeamMemberComponent } from './projects/project-detail/team-member/team-
 import { ProjectOverviewComponent } from './projects/project-detail/project-overview/project-overview.component';
 import { SprintPlanningComponent } from './sprint/sprint-planning/sprint-planning.component';
 import { SprintService } from './sprint/sprint.service';
+import { UserStoryListComponent } from './sprint/sprint-planning/user-story-list/user-story-list.component';
+import { UserStoryEditComponent } from './sprint/sprint-planning/user-story-edit/user-story-edit.component';
 
 const appRoutes: Routes = [{
   path: 'projects', component: ProjectsComponent, children: [
@@ -22,10 +24,13 @@ const appRoutes: Routes = [{
     { path: 'new', component: ProjectEditComponent }
   ]
 },
-{path: 'projects/:id', component: ProjectDetailComponent, children: [
-   { path: '', component: ProjectOverviewComponent, pathMatch: 'full' },
-  { path: 'teammember', component: TeamMemberComponent }
-]},
+{
+  path: 'projects/:id', component: ProjectDetailComponent, children: [
+    { path: '', component: ProjectOverviewComponent, pathMatch: 'full' },
+    { path: 'teammember', component: TeamMemberComponent },
+    {path: 'userstory', component: UserStoryListComponent}
+  ]
+},
 {
   path: '',
   redirectTo: '/projects',
@@ -35,7 +40,7 @@ const appRoutes: Routes = [{
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule],
-  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent, UserStoryListComponent, UserStoryEditComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService, SprintService]
 })
