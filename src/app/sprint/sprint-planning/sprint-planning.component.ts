@@ -20,8 +20,16 @@ export class SprintPlanningComponent implements OnInit {
     if (this.productBacklog) {
       console.log(this.productBacklog.userStory[0].name);
     }
+    else {
+      // 
+    }
   }
   editProductBacklog() {
-    this.backlogEditMode = true;
+    this.backlogEditMode = !this.backlogEditMode;
+    if (!this.productBacklog) {
+      this.productBacklog = new ProductBacklog(this.productBacklog.projectName, [], false);
+    }else{
+
+    }
   }
 }

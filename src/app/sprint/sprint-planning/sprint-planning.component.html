@@ -1,3 +1,4 @@
+
 <div class="row" *ngIf="!backlogEditMode">
 	<div class="col-xs-12">
 		<span [className]="productBacklog?'showbox greenbox':'showbox'" style="cursor: pointer;" (click)="editProductBacklog()">
@@ -6,8 +7,11 @@
     </div>
     </div>
 
-    <div class="row" *ngIf="!backlogEditMode">
-	<div class="col-xs-12">
+    <div class="row" *ngIf="backlogEditMode" style="margin-top:5px;">
+
+	<div class="col-xs-4">
+    <h3><p>User Stories</p></h3>
+    <hr>
 <a class="list-group-item clearfix" *ngFor="let userStory of productBacklog.userStory">
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{userStory.name}}</h4>
@@ -15,5 +19,6 @@
   </div>
   
 </a>
+<button (click)="editProductBacklog()" class="btn btn-primary" type="button">Back</button>
   </div>
 </div>

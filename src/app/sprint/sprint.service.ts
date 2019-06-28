@@ -7,7 +7,9 @@ export class SprintService {
 
   productBacklog: ProductBacklog[] = [new ProductBacklog(
     'ING-Banking',
-    [new UserStory('Recipe service', 'Its a recipe service', 'Gurusharan')],
+    [new UserStory('Recipe service', 'Its a recipe service', 'Gurusharan'),
+    new UserStory('Model', 'Its a recipe service', 'Gurusharan'),
+    new UserStory('Database creation', 'Its a recipe service', 'Gurusharan')],
     true)];
 
   constructor() { }
