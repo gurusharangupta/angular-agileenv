@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserStory } from '../../../model/user-story.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SprintService } from '../../sprint.service';
 
 @Component({
   selector: 'app-user-story-list',
@@ -8,16 +10,15 @@ import { UserStory } from '../../../model/user-story.model';
 })
 export class UserStoryListComponent implements OnInit {
 
-  @Input() userStories: UserStory[];
-  @Input() backlogEditMode: boolean;
-  @Output() editChange = new EventEmitter<boolean>();
-  constructor() { }
+  userStories: UserStory[];
+
+  constructor(private router: Router, private routes: ActivatedRoute, private sprintService: SprintService) { }
 
   ngOnInit() {
+    this.userStories = this.routes.snapshot.data['userStory'];
   }
-  editProductBacklog() {
-    console.log(this.backlogEditMode);
-    this.backlogEditMode = !this.backlogEditMode;
-    this.editChange.emit(this.backlogEditMode);
+
+  closeProductBacklog() {
+    this.router.navigate(['../'], { relativeTo: this.routes });
   }
 }

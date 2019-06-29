@@ -1,4 +1,4 @@
-export class UserStory{
+export class UserStory {
 
-  constructor(public name:string, public description: string, public owner: string){}
+  constructor(public name: string, public description: string, public owner: string) { }
 }

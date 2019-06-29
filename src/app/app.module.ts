@@ -17,6 +17,9 @@ import { SprintPlanningComponent } from './sprint/sprint-planning/sprint-plannin
 import { SprintService } from './sprint/sprint.service';
 import { UserStoryListComponent } from './sprint/sprint-planning/user-story-list/user-story-list.component';
 import { UserStoryEditComponent } from './sprint/sprint-planning/user-story-edit/user-story-edit.component';
+import { UserStoryResolverService } from './sprint/sprint-planning/user-story-list/user-story-resolver.service';
+import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-detail/user-story-detail.component';
+
 
 const appRoutes: Routes = [{
   path: 'projects', component: ProjectsComponent, children: [
@@ -28,7 +31,15 @@ const appRoutes: Routes = [{
   path: 'projects/:id', component: ProjectDetailComponent, children: [
     { path: '', component: ProjectOverviewComponent },
     { path: 'teammember', component: TeamMemberComponent },
-    { path: 'userstory', component: UserStoryListComponent }
+    {
+      path: 'userstory', component: UserStoryListComponent, resolve: { userStory: UserStoryResolverService }, children:
+        [
+          { path: 'new', component: UserStoryEditComponent },
+          { path: ':id', component: UserStoryDetailComponent },
+          { path: ':id/edit', component: UserStoryDetailComponent },
+
+        ]
+    }
   ]
 },
 {
@@ -40,8 +51,11 @@ const appRoutes: Routes = [{
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule],
-  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent, ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent, UserStoryListComponent, UserStoryEditComponent],
+  declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent,
+    ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent, UserStoryListComponent,
+    UserStoryEditComponent,
+    UserStoryDetailComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService]
+  providers: [ProjectService, SprintService, UserStoryResolverService]
 })
 export class AppModule { }

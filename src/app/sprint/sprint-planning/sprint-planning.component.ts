@@ -10,7 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./sprint-planning.component.css']
 })
 export class SprintPlanningComponent implements OnInit {
-  backlogEditMode: boolean = false;
 
   @Input() project: Project;
   productBacklog: ProductBacklog;
@@ -18,15 +17,8 @@ export class SprintPlanningComponent implements OnInit {
 
   ngOnInit() {
     this.productBacklog = this.sprintService.fetchProductBacklogByProjectName(this.project.name);
-    if (this.productBacklog) {
-      console.log(this.productBacklog.userStory[0].name);
-    }
-    else {
-      // 
-    }
   }
   editProductBacklog() {
-    this.backlogEditMode = !this.backlogEditMode;
     if (!this.productBacklog) {
       this.productBacklog = new ProductBacklog(this.project.name, [], false);
       this.router.navigate(['userstory'], { relativeTo: this.routes });
@@ -34,9 +26,5 @@ export class SprintPlanningComponent implements OnInit {
       this.router.navigate(['userstory'], { relativeTo: this.routes });
     }
 
-  }
-
-  changeEditMode(mode: boolean) {
-    this.backlogEditMode = mode;
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductBacklog } from '../model/product-backlog.model';
 import { UserStory } from '../model/user-story.model';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class SprintService {
@@ -12,10 +13,11 @@ export class SprintService {
     new UserStory('Database creation', 'Its a recipe service', 'Gurusharan')],
     true)];
 
+
   constructor() { }
 
   fetchProductBacklogByProjectName(name: string) {
-    for (let backlog of this.productBacklog) {
+    for (const backlog of this.productBacklog) {
       if (backlog.projectName === name) {
         return backlog;
       }
