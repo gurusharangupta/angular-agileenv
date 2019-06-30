@@ -32,11 +32,11 @@ const appRoutes: Routes = [{
     { path: '', component: ProjectOverviewComponent },
     { path: 'teammember', component: TeamMemberComponent },
     {
-      path: 'userstory', component: UserStoryListComponent, resolve: { userStory: UserStoryResolverService }, children:
+      path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
         [
           { path: 'new', component: UserStoryEditComponent },
           { path: ':id', component: UserStoryDetailComponent },
-          { path: ':id/edit', component: UserStoryDetailComponent },
+          { path: ':id/edit', component: UserStoryEditComponent },
 
         ]
     }

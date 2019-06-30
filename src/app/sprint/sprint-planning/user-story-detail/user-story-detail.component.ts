@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserStory } from 'src/app/model/user-story.model';
+import { UserStory } from '../../../model/user-story.model';
+import { SprintService } from '../../sprint.service';
 
 @Component({
   selector: 'app-user-story-detail',
@@ -9,14 +10,14 @@ import { UserStory } from 'src/app/model/user-story.model';
 })
 export class UserStoryDetailComponent implements OnInit {
 
-  constructor(private routes: ActivatedRoute) { }
+  constructor(private routes: ActivatedRoute, private sprintService: SprintService) { }
   userStories: UserStory[];
   userStory: UserStory;
   ngOnInit() {
-    this.userStories = this.routes.parent.snapshot.data['userStory'];
+
     this.routes.params.subscribe(
       (params) => {
-        this.userStory = this.userStories[+params['id']];
+        this.userStory = this.sprintService.fetchUserStoryById(+params['id']);
       }
     )
   }

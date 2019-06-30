@@ -1,5 +1,6 @@
-<h3>
-    <p>Add to User Stories</p>
+<h3 style="display: inline;">
+    <p style="display: inline;">{{editMode?'Edit':'Add To'}} User Story 
+    </p>
   </h3>
   <hr>
 
@@ -19,11 +20,10 @@
       <input type="text" class="form-control">
     </div>
 
-    <div class="form-group">
-      <label for="date">Date</label>
-      <input type="date" class="form-control">
-    </div>
     <button type="button" class="btn btn-primary" [routerLink]="['/projects']">
       Add Story
     </button>
+    <button type="button" class="btn btn-danger" [routerLink]="['/projects']">
+        Cancel
+      </button>
   </form>

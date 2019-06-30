@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-story-edit',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserStoryEditComponent implements OnInit {
 
-  constructor() { }
+  editMode = false;
+  id: number;
+  constructor(private routes: ActivatedRoute) { }
 
   ngOnInit() {
+    this.routes.params.subscribe(
+      (params) => {
+        this.id = +params['id'];
+        this.editMode = params['id'] != null;
+      }
+    );
   }
 
 }

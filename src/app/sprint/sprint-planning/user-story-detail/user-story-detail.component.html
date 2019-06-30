@@ -1,5 +1,6 @@
-<h3>
-    <p>User Story Detail</p>
+<h3 style="display: inline;">
+    <p style="display: inline;">User Story Detail 
+    </p>
   </h3>
   <hr>
 
@@ -15,9 +16,9 @@
     </div>
 
     <div class="form-group">
-      <label for="name">Owner</label>
+      <label for="name">Owner: </label>
       {{userStory.owner}}
     </div>
-
-    
+<button type="button" class="btn btn-primary" [routerLink]="['edit']">Edit</button>
+     
   </form>

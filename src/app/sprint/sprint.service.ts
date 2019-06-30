@@ -13,7 +13,7 @@ export class SprintService {
     new UserStory('Database creation', 'Its a recipe service', 'Gurusharan')],
     true)];
 
-
+  userStories: UserStory[];
   constructor() { }
 
   fetchProductBacklogByProjectName(name: string) {
@@ -24,5 +24,15 @@ export class SprintService {
     }
     return null;
 
+  }
+  fetchUserStories() {
+    return this.userStories.slice();
+  }
+
+  fetchUserStoryById(index: number) {
+    return this.userStories.slice()[index];
+  }
+  setUserStories(userStories: UserStory[]) {
+    this.userStories = userStories;
   }
 }

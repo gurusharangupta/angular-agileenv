@@ -15,7 +15,7 @@ export class UserStoryListComponent implements OnInit {
   constructor(private router: Router, private routes: ActivatedRoute, private sprintService: SprintService) { }
 
   ngOnInit() {
-    this.userStories = this.routes.snapshot.data['userStory'];
+    this.userStories = this.sprintService.fetchUserStories();
   }
 
   closeProductBacklog() {
