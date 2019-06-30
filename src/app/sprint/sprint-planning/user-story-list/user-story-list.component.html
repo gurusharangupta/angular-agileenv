@@ -2,8 +2,7 @@
   <h3 style="display: inline;">
     <p style="display: inline;">User Stories 
     </p>
-  </h3><span class="glyphicon glyphicon-plus" style="border:1px solid;padding: 6px;" [routerLink]="['new']"></span>
-  
+  </h3>
   <hr>
   <a class="list-group-item clearfix" *ngFor="let userStory of userStories;let i= index;" [routerLink]="i" style="padding:15px; border-radius: 5px!important;">
     <div class="pull-left">
@@ -15,6 +14,7 @@
     <p>No User Story have been added</p>
   </div>
   <button (click)="closeProductBacklog()" class="btn btn-primary" type="button">Back</button>
+  <button type="button" class="btn btn-success" [routerLink]="['new']">Add User Story</button>
 </div>
 
 <div class="col-xs-6">
