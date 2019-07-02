@@ -4,10 +4,10 @@
   </h3>
   <hr>
 
-  <form>
+  <form []>
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="name"  [(ngModel)]="userStory.name">
     </div>
 
     <div class="form-group">
@@ -21,7 +21,7 @@
     </div>
 
     <button type="button" class="btn btn-primary" [routerLink]="['/projects']">
-      Add Story
+     {{editMode?'Update':'Save'}}
     </button>
     <button type="button" class="btn btn-danger" [routerLink]="['/projects']">
         Cancel

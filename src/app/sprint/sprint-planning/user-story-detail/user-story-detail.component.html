@@ -19,6 +19,6 @@
       <label for="name">Owner: </label>
       {{userStory.owner}}
     </div>
-<button type="button" class="btn btn-primary" [routerLink]="['edit']">Edit</button>
+<button type="button" class="btn btn-primary" [routerLink]="['edit']" (click)="editStory()">Edit</button>
      
   </form>

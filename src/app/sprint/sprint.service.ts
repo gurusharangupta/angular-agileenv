@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductBacklog } from '../model/product-backlog.model';
 import { UserStory } from '../model/user-story.model';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class SprintService {

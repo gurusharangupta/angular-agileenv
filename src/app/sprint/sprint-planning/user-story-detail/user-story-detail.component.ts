@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserStory } from '../../../model/user-story.model';
 import { SprintService } from '../../sprint.service';
 
@@ -10,7 +10,7 @@ import { SprintService } from '../../sprint.service';
 })
 export class UserStoryDetailComponent implements OnInit {
 
-  constructor(private routes: ActivatedRoute, private sprintService: SprintService) { }
+  constructor(private routes: ActivatedRoute, private sprintService: SprintService, private router: Router) { }
   userStories: UserStory[];
   userStory: UserStory;
   ngOnInit() {
@@ -20,6 +20,11 @@ export class UserStoryDetailComponent implements OnInit {
         this.userStory = this.sprintService.fetchUserStoryById(+params['id']);
       }
     )
+  }
+
+  editStory() {
+    this.sprintService.userStoryChange.next(this.userStory);
+    this.router.navigate(['edit'], { relativeTo: this.routes });
   }
 
 }

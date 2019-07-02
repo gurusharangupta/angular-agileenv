@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { UserStory } from '../../../model/user-story.model';
+import { SprintService } from '../../sprint.service';
 
 @Component({
   selector: 'app-user-story-edit',
@@ -10,7 +12,8 @@ export class UserStoryEditComponent implements OnInit {
 
   editMode = false;
   id: number;
-  constructor(private routes: ActivatedRoute) { }
+  userStory: UserStory;
+  constructor(private routes: ActivatedRoute, private sprintService: SprintService) { }
 
   ngOnInit() {
     this.routes.params.subscribe(
@@ -19,6 +22,11 @@ export class UserStoryEditComponent implements OnInit {
         this.editMode = params['id'] != null;
       }
     );
+    if (this.id != null) {
+      this.userStory = this.sprintService.fetchUserStoryById(this.id);
+    }
+
+
   }
 
 }
