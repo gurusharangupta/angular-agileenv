@@ -1,29 +1,33 @@
-<h3 style="display: inline;">
-    <p style="display: inline;">{{editMode?'Edit':'Add To'}} User Story 
-    </p>
-  </h3>
-  <hr>
+<div class="row">
+	<div class="col-xs-12">
+		<h3 style="display: inline;">
+			<p style="display: inline;">{{editMode?'Edit':'Add To'}} User Story
+			</p>
+		</h3>
+		<hr>
 
-  <form []>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" name="name"  [(ngModel)]="userStory.name">
+		<form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+			<div class="form-group">
+				<label for="name">Name</label>
+      <input type="text" class="form-control" id="name "name="name"  ngModel>
     </div>
 
     <div class="form-group">
       <label for="name">Description</label>
-      <textarea name="description" id="description" cols="12" rows="6" class="form-control"></textarea>
+      <textarea name="description" id="description" cols="12" rows="6" class="form-control" name="description" ngModel></textarea>
     </div>
 
     <div class="form-group">
       <label for="name">Owner</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" id="owner" name="owner" ngModel>
     </div>
 
-    <button type="button" class="btn btn-primary" [routerLink]="['/projects']">
+    <button type="submit" class="btn btn-primary" [routerLink]="['/projects']">
      {{editMode?'Update':'Save'}}
     </button>
     <button type="button" class="btn btn-danger" [routerLink]="['/projects']">
         Cancel
       </button>
   </form>
+  </div>
+</div>

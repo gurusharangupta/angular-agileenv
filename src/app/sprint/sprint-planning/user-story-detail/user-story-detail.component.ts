@@ -23,7 +23,7 @@ export class UserStoryDetailComponent implements OnInit {
   }
 
   editStory() {
-    this.sprintService.userStoryChange.next(this.userStory);
+    
     this.router.navigate(['edit'], { relativeTo: this.routes });
   }
 
