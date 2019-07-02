@@ -20,7 +20,7 @@ export class SprintPlanningComponent implements OnInit {
   }
   editProductBacklog() {
     if (!this.productBacklog) {
-      this.productBacklog = new ProductBacklog(this.project.name, [], false);
+      //this.productBacklog = new ProductBacklog(this.project.name, [], false);
       this.router.navigate(['userstory'], { relativeTo: this.routes });
     } else {
       this.router.navigate(['userstory'], { relativeTo: this.routes });

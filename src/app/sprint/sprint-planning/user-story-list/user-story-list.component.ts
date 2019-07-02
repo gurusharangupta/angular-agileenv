@@ -16,6 +16,7 @@ export class UserStoryListComponent implements OnInit {
 
   ngOnInit() {
     this.userStories = this.sprintService.fetchUserStories();
+    console.log(this.userStories);
   }
 
   closeProductBacklog() {

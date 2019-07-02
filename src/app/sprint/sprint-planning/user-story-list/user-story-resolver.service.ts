@@ -19,12 +19,12 @@ export class UserStoryResolverService implements Resolve<UserStory[]> {
     this.id = +route.parent.params['id'];
     this.project = this.projectService.fetchProjectById(this.id);
     this.productBacklog = this.sprintService.fetchProductBacklogByProjectName(this.project.name);
-    this.sprintService.setUserStories(this.productBacklog.userStories);
     if (!this.productBacklog) {
+      this.sprintService.setUserStories([]);
       return null;
     } else {
+      this.sprintService.setUserStories(this.productBacklog.userStories);
       return this.productBacklog.userStories;
-
     }
 
   }

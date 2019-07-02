@@ -10,7 +10,7 @@
     </div>
 
   </a>
-  <div *ngIf="!userStories?true:false">
+  <div *ngIf="userStories.length > 0? false: true">
     <p>No User Story have been added</p>
   </div>
   <button (click)="closeProductBacklog()" class="btn btn-primary" type="button">Back</button>
