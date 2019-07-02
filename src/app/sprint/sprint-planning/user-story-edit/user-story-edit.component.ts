@@ -23,28 +23,28 @@ export class UserStoryEditComponent implements OnInit {
       (params) => {
         this.id = +params['id'];
         this.editMode = params['id'] != null;
-       
+
       }
     );
     if (this.id != null) {
       this.userStory = this.sprintService.fetchUserStoryById(this.id);
     }
     setTimeout(() => {
-this.userStoryForm.setValue({
-      name: this.userStory.name,
-      description: this.userStory.description,
-      owner: this.userStory.owner
+      this.userStoryForm.setValue({
+        name: this.userStory.name,
+        description: this.userStory.description,
+        owner: this.userStory.owner
 
-    }),
-    1000
+      }),
+        1000
     });
-    
+
     console.log(this.userStoryForm);
 
 
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm) {
 
   }
 
