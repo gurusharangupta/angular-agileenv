@@ -38,7 +38,6 @@ export class SprintService {
 
   setProductBacklog(projectName: string, userStories: UserStory[], editMode: boolean) {
     this.productBacklog = new ProductBacklog(projectName, userStories, editMode);
-
   }
 
   updateUserStory(index: number, userStory: UserStory) {
@@ -48,7 +47,6 @@ export class SprintService {
 
   addUserStory(userStory: UserStory) {
     this.productBacklog.userStories.push(userStory);
-    console.log(this.productBacklogList);
     this.userStoryChanged.next(this.productBacklog.userStories.slice());
   }
 }
