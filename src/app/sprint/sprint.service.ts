@@ -19,7 +19,8 @@ export class SprintService {
   constructor() { }
 
   fetchProductBacklogByProjectName(name: string) {
-    for (const backlog of this.productBacklogList) {
+    const newProductBacklogList = this.productBacklogList.slice();
+    for (const backlog of newProductBacklogList) {
       if (backlog.projectName === name) {
         return backlog;
       }
@@ -47,6 +48,7 @@ export class SprintService {
 
   addUserStory(userStory: UserStory) {
     this.productBacklog.userStories.push(userStory);
+    console.log(this.productBacklogList);
     this.userStoryChanged.next(this.productBacklog.userStories.slice());
   }
 }
