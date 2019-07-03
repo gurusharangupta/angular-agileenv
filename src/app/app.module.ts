@@ -19,9 +19,12 @@ import { UserStoryListComponent } from './sprint/sprint-planning/user-story-list
 import { UserStoryEditComponent } from './sprint/sprint-planning/user-story-edit/user-story-edit.component';
 import { UserStoryResolverService } from './sprint/sprint-planning/user-story-list/user-story-resolver.service';
 import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-detail/user-story-detail.component';
+import { AuthComponent } from './auth/auth.component';
 
 
-const appRoutes: Routes = [{
+const appRoutes: Routes = [
+  { path: 'auth', component: AuthComponent },
+  {
   path: 'projects', component: ProjectsComponent, children: [
     { path: '', component: ProjectListComponent, pathMatch: 'full' },
     { path: 'new', component: ProjectEditComponent }
@@ -44,17 +47,18 @@ const appRoutes: Routes = [{
 },
 {
   path: '',
-  redirectTo: '/projects',
+  redirectTo: '/auth',
   pathMatch: 'full'
 },
-{ path: '**', component: ProjectsComponent }];
+{ path: '**', component: AuthComponent }];
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule],
   declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent,
     ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent, UserStoryListComponent,
     UserStoryEditComponent,
-    UserStoryDetailComponent],
+    UserStoryDetailComponent,
+    AuthComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService, SprintService, UserStoryResolverService]
 })
