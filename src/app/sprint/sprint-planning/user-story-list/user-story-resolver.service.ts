@@ -20,10 +20,10 @@ export class UserStoryResolverService implements Resolve<UserStory[]> {
     this.project = this.projectService.fetchProjectById(this.id);
     this.productBacklog = this.sprintService.fetchProductBacklogByProjectName(this.project.name);
     if (!this.productBacklog) {
-      this.sprintService.setUserStories([]);
+      this.sprintService.setProductBacklog(this.project.name, [], true);
       return null;
     } else {
-      this.sprintService.setUserStories(this.productBacklog.userStories);
+      this.sprintService.setProductBacklog(this.project.name, this.productBacklog.userStories, this.productBacklog.editMode);
       return this.productBacklog.userStories;
     }
 

@@ -26,20 +26,18 @@ export class UserStoryEditComponent implements OnInit {
 
       }
     );
-    if (this.id != null) {
+    if (this.editMode) {
       this.userStory = this.sprintService.fetchUserStoryById(this.id);
+      setTimeout(() => {
+        this.userStoryForm.setValue({
+          name: this.userStory.name,
+          description: this.userStory.description,
+          owner: this.userStory.owner
+
+        }),
+          1000
+      });
     }
-    setTimeout(() => {
-      this.userStoryForm.setValue({
-        name: this.userStory.name,
-        description: this.userStory.description,
-        owner: this.userStory.owner
-
-      }),
-        1000
-    });
-
-    console.log(this.userStoryForm);
 
 
   }

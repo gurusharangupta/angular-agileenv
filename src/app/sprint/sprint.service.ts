@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class SprintService {
 
-  productBacklog: ProductBacklog[] = [new ProductBacklog(
+  productBacklogList: ProductBacklog[] = [new ProductBacklog(
     'ING-Banking',
     [new UserStory('Recipe service', 'Its a recipe service', 'Gurusharan'),
     new UserStory('Model', 'Its a recipe service', 'Gurusharan'),
@@ -14,10 +14,11 @@ export class SprintService {
     true)];
 
   userStories: UserStory[];
+  productBacklog: ProductBacklog;
   constructor() { }
 
   fetchProductBacklogByProjectName(name: string) {
-    for (const backlog of this.productBacklog) {
+    for (const backlog of this.productBacklogList) {
       if (backlog.projectName === name) {
         return backlog;
       }
@@ -26,13 +27,18 @@ export class SprintService {
 
   }
   fetchUserStories() {
-    return this.userStories.slice();
+    return this.productBacklog.userStories.slice();
   }
 
   fetchUserStoryById(index: number) {
-    return this.userStories.slice()[index];
+    return this.productBacklog.userStories.slice()[index];
   }
   setUserStories(userStories: UserStory[]) {
     this.userStories = userStories;
+  }
+
+  setProductBacklog(projectName: string, userStories: UserStory[], editMode: boolean) {
+    this.productBacklog = new ProductBacklog(projectName, userStories, editMode);
+
   }
 }
