@@ -13,8 +13,9 @@ export class SprintService {
     new UserStory('Database creation', 'Its a recipe service', 'Gurusharan')],
     true)];
 
-  userStories: UserStory[];
   productBacklog: ProductBacklog;
+
+  userStoryChanged = new Subject<UserStory[]>();
   constructor() { }
 
   fetchProductBacklogByProjectName(name: string) {
@@ -33,9 +34,6 @@ export class SprintService {
   fetchUserStoryById(index: number) {
     return this.productBacklog.userStories.slice()[index];
   }
-  setUserStories(userStories: UserStory[]) {
-    this.userStories = userStories;
-  }
 
   setProductBacklog(projectName: string, userStories: UserStory[], editMode: boolean) {
     this.productBacklog = new ProductBacklog(projectName, userStories, editMode);
@@ -44,9 +42,11 @@ export class SprintService {
 
   updateUserStory(index: number, userStory: UserStory) {
     this.productBacklog.userStories[index] = userStory;
+    this.userStoryChanged.next(this.productBacklog.userStories.slice());
   }
 
   addUserStory(userStory: UserStory) {
     this.productBacklog.userStories.push(userStory);
+    this.userStoryChanged.next(this.productBacklog.userStories.slice());
   }
 }

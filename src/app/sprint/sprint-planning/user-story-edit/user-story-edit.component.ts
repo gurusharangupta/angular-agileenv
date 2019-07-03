@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserStory } from '../../../model/user-story.model';
 import { SprintService } from '../../sprint.service';
 import { NgForm } from '@angular/forms';
@@ -15,7 +15,7 @@ export class UserStoryEditComponent implements OnInit {
   id: number;
   @ViewChild('f', { static: true }) userStoryForm: NgForm;
 
-  constructor(private routes: ActivatedRoute, private sprintService: SprintService) { }
+  constructor(private routes: ActivatedRoute, private sprintService: SprintService, private router: Router) { }
 
   ngOnInit() {
     this.routes.params.subscribe(
@@ -50,6 +50,9 @@ export class UserStoryEditComponent implements OnInit {
     } else {
       this.sprintService.addUserStory(newUserStory);
     }
+
+    form.reset();
+    this.router.navigate(['../'],{relativeTo: this.routes});
   }
 
 }
