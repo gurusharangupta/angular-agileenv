@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Project } from '../../model/project.model';
+import { ProjectService } from '../project.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-edit',
@@ -8,12 +11,18 @@ import { NgForm } from '@angular/forms';
 })
 export class ProjectEditComponent implements OnInit {
 
-  projectForm: NgForm;
-  constructor() { }
+  @ViewChild('f', { static: true }) projectForm: NgForm;
+
+  constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
+
   }
   onSubmit(form: NgForm) {
+    const val = form.value;
+    const project = new Project(val.name, val.description, val.owner, val.date, 'sprint-planning', null);
+    this.projectService.addProjects(project);
+    this.router.navigate(['../'], { relativeTo: this.routes });
 
   }
 

@@ -23,6 +23,7 @@ export class ProjectListComponent implements OnInit {
   newProject() {
     this.router.navigate(['/projects/new']);
   }
+  
   toProject(index: number) {
     this.router.navigate([index], { relativeTo: this.routes });
   }
