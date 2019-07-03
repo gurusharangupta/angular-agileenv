@@ -41,4 +41,12 @@ export class SprintService {
     this.productBacklog = new ProductBacklog(projectName, userStories, editMode);
 
   }
+
+  updateUserStory(index: number, userStory: UserStory) {
+    this.productBacklog.userStories[index] = userStory;
+  }
+
+  addUserStory(userStory: UserStory) {
+    this.productBacklog.userStories.push(userStory);
+  }
 }

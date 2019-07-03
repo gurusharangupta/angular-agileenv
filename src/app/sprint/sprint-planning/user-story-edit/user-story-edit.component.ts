@@ -13,7 +13,6 @@ export class UserStoryEditComponent implements OnInit {
 
   editMode = false;
   id: number;
-  userStory: UserStory;
   @ViewChild('f', { static: true }) userStoryForm: NgForm;
 
   constructor(private routes: ActivatedRoute, private sprintService: SprintService) { }
@@ -27,12 +26,13 @@ export class UserStoryEditComponent implements OnInit {
       }
     );
     if (this.editMode) {
-      this.userStory = this.sprintService.fetchUserStoryById(this.id);
+      ;
+      const userStory: UserStory = this.sprintService.fetchUserStoryById(this.id);
       setTimeout(() => {
         this.userStoryForm.setValue({
-          name: this.userStory.name,
-          description: this.userStory.description,
-          owner: this.userStory.owner
+          name: userStory.name,
+          description: userStory.description,
+          owner: userStory.owner
 
         }),
           1000
@@ -43,7 +43,13 @@ export class UserStoryEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-
+    const valueConst = form.value;
+    const newUserStory = new UserStory(valueConst.name, valueConst.description, valueConst.owner);
+    if (this.editMode) {
+      this.sprintService.updateUserStory(this.id, newUserStory);
+    } else {
+      this.sprintService.addUserStory(newUserStory);
+    }
   }
 
 }
