@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../../service/auth.service';
+import { AuthService, AuthResponseData } from '../../service/auth.service';
 import { AlertService } from '../../service/alert.service';
-
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,8 +11,9 @@ import { AlertService } from '../../service/alert.service';
 })
 export class SignupComponent implements OnInit {
 
+  isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private alertService: AlertService) { }
+  constructor(private authService: AuthService, private alertService: AlertService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -20,14 +22,28 @@ export class SignupComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-
+    this.isLoading = true;
     const password = form.value.password;
     const confirmPass = form.value.confirm_password;
     const email = form.value.email;
+    let signUpObs: Observable<AuthResponseData>;
 
     if (password === confirmPass) {
-      this.authService.signup(email,password);
+     this.authService.signUp(email, password).subscribe(
+      resData => {
+        this.isLoading = false;
+        this.router.navigate(['/projects']);
+        console.log(resData);
+      },
+      errorMessage => {
+        this.alertService.setAlert('Error', errorMessage);
+        this.isLoading = false;
+
+      }
+    );
+
     }
+
   }
 
 }

@@ -1,6 +1,9 @@
 <div class="row">
 	<div class="col-xs-12 signup-body">
-		<div class="signup-form">
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+		<div class="signup-form" *ngIf="!isLoading">
 			<form #f="ngForm" (ngSubmit)="onSubmit(f)">
 				<h2>Register</h2>
 				<p class="hint-text">Create your account. It's free and only takes a minute.</p>

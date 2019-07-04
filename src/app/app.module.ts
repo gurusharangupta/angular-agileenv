@@ -25,6 +25,7 @@ import { AuthService } from './service/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AlertComponent } from './shared/alert/alert.component';
 import { AlertService } from './service/alert.service';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 const appRoutes: Routes = [
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
     UserStoryDetailComponent,
     AuthComponent,
     SignupComponent,
-    AlertComponent],
+    AlertComponent,
+    LoadingSpinnerComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService]
 })
