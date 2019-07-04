@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
@@ -22,10 +23,12 @@ import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-de
 import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthService } from './service/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+
 import { AlertComponent } from './shared/alert/alert.component';
 import { AlertService } from './service/alert.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './service/auth-interceptor.service';
+import { AuthGuardService } from './service/auth-guard.service';
 
 
 const appRoutes: Routes = [
@@ -70,6 +73,12 @@ const appRoutes: Routes = [
     AlertComponent,
     LoadingSpinnerComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService]
+  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService,AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+
+  }]
 })
 export class AppModule { }

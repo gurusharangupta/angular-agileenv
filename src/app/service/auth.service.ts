@@ -32,6 +32,19 @@ export class AuthService {
       }).pipe(catchError(this.handleError));
   }
 
+    login(email: string, password: string) {
+    return this.http.post<AuthResponseData>('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBUhRZwz4CVDoBjYfw-ldzCILvu1rn-PDI',
+      {
+        email: email,
+        password: password,
+        returnSecureToken: true
+
+      }).pipe(catchError(this.handleError), tap(resData => {
+        this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+      }));
+
+  }
+
  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
     console.log(expiresIn);
     const expirationDate = new Date(new Date().getTime() + expiresIn + 90000);
