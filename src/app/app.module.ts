@@ -21,41 +21,43 @@ import { UserStoryResolverService } from './sprint/sprint-planning/user-story-li
 import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-detail/user-story-detail.component';
 import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   {
-  path: 'projects', component: ProjectsComponent, children: [
-    { path: '', component: ProjectListComponent, pathMatch: 'full' },
-    { path: 'new', component: ProjectEditComponent }
-  ]
-},
-{
-  path: 'projects/:id', component: ProjectDetailComponent, children: [
-    { path: '', component: ProjectOverviewComponent },
-    { path: 'teammember', component: TeamMemberComponent },
-    {
-      path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
-        [
-          { path: 'new', component: UserStoryEditComponent },
-          { path: ':id', component: UserStoryDetailComponent },
-          { path: ':id/edit', component: UserStoryEditComponent },
+    path: 'projects', component: ProjectsComponent, children: [
+      { path: '', component: ProjectListComponent, pathMatch: 'full' },
+      { path: 'new', component: ProjectEditComponent }
+    ]
+  },
+  {
+    path: 'projects/:id', component: ProjectDetailComponent, children: [
+      { path: '', component: ProjectOverviewComponent },
+      { path: 'teammember', component: TeamMemberComponent },
+      {
+        path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
+          [
+            { path: 'new', component: UserStoryEditComponent },
+            { path: ':id', component: UserStoryDetailComponent },
+            { path: ':id/edit', component: UserStoryEditComponent },
 
-        ]
-    }
-  ]
-},
-{
-  path: '',
-  redirectTo: '/auth',
-  pathMatch: 'full'
-},
-{ path: '**', component: AuthComponent }];
+          ]
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/auth',
+    pathMatch: 'full'
+  },
+  { path: '**', component: AuthComponent }];
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes), ReactiveFormsModule, HttpClientModule],
   declarations: [AppComponent, HelloComponent, HeaderComponent, ProjectsComponent, ProjectEditComponent, ProjectListComponent,
     ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent, UserStoryListComponent,
     UserStoryEditComponent,
@@ -63,6 +65,6 @@ const appRoutes: Routes = [
     AuthComponent,
     SignupComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService, UserStoryResolverService]
+  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService]
 })
 export class AppModule { }
