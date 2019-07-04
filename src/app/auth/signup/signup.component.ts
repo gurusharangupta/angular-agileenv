@@ -20,16 +20,13 @@ export class SignupComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    console.log('YAYsdf');
+
     const password = form.value.password;
     const confirmPass = form.value.confirm_password;
     const email = form.value.email;
-    console.log(password);
-console.log(confirmPass);
 
     if (password === confirmPass) {
-      console.log('YAY');
-      this.alertService.setAlert('Success', 'Password are same');
+      this.authService.signup(email,password);
     }
   }
 

@@ -5,4 +5,7 @@ export class AuthService {
 
   constructor() { }
 
+  signup(email: string, password: string) {
+
+  }
 }
