@@ -20,10 +20,12 @@ import { UserStoryEditComponent } from './sprint/sprint-planning/user-story-edit
 import { UserStoryResolverService } from './sprint/sprint-planning/user-story-list/user-story-resolver.service';
 import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-detail/user-story-detail.component';
 import { AuthComponent } from './auth/auth.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
+  { path: 'signup', component: SignupComponent },
   {
   path: 'projects', component: ProjectsComponent, children: [
     { path: '', component: ProjectListComponent, pathMatch: 'full' },
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     ProjectDetailComponent, TeamMemberComponent, ProjectOverviewComponent, SprintPlanningComponent, UserStoryListComponent,
     UserStoryEditComponent,
     UserStoryDetailComponent,
-    AuthComponent],
+    AuthComponent,
+    SignupComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService, SprintService, UserStoryResolverService]
 })
