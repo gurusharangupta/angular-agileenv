@@ -21,8 +21,10 @@ import { UserStoryResolverService } from './sprint/sprint-planning/user-story-li
 import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-detail/user-story-detail.component';
 import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './service/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AlertComponent } from './shared/alert/alert.component';
+import { AlertService } from './service/alert.service';
 
 
 const appRoutes: Routes = [
@@ -63,8 +65,9 @@ const appRoutes: Routes = [
     UserStoryEditComponent,
     UserStoryDetailComponent,
     AuthComponent,
-    SignupComponent],
+    SignupComponent,
+    AlertComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService]
+  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService]
 })
 export class AppModule { }

@@ -1,0 +1,9 @@
+<div class="row" *ngIf="status != ''">
+	<div class="col-xs-12">
+<div [className]="alertType" role="alert">
+ <a  class="close" data-dismiss="alert" aria-label="close" (click)="hideAlert()">&times;</a>
+
+  <strong>{{status}}!</strong> {{statusMessage}}
+</div>
+  </div>
+</div>
