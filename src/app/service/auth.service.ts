@@ -92,11 +92,11 @@ export class AuthService {
     }
 
     const loadedUser = new User(userData.email,
-     userData.access_token,
+      userData.access_token,
       userData.token_type,
-       userData.refresh_token,
-        userData.scope,
-         new Date(userData._tokenExpirationDate));
+      userData.refresh_token,
+      userData.scope,
+      new Date(userData._tokenExpirationDate));
     this.user.next(loadedUser);
   }
 
