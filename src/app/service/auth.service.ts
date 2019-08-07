@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
@@ -17,39 +17,41 @@ export interface AuthResponseData {
 
 @Injectable()
 export class AuthService {
- user = new BehaviorSubject<User>(null);
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  signUp(email: string, password: string) {
+  signUp(username: string, password: string) {
 
-    return this.http.post<AuthResponseData>('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyBUhRZwz4CVDoBjYfw-ldzCILvu1rn-PDI',
+    return this.http.post<AuthResponseData>('http://localhost:8080/signup',
       {
-        email: email,
-        password: password,
-        returnSecureToken: true
+        username: username,
+        password: password
 
       }).pipe(catchError(this.handleError));
   }
 
-    login(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyBUhRZwz4CVDoBjYfw-ldzCILvu1rn-PDI',
+  login(username: string, password: string) {
+    console.log(username);
+    let headers = new HttpHeaders();
+    headers = headers.append("Authorization", "Basic " + btoa("client:secret"));
+    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
+    headers = headers.append("grant_type", "password");
+    return this.http.post('http://localhost:8080/oauth/token',
       {
-        email: email,
-        password: password,
-        returnSecureToken: true
-
-      }).pipe(catchError(this.handleError), tap(resData => {
-        this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
+        username: username,
+        password: password
+      },
+      { headers: headers }).pipe(catchError(this.handleError), tap(resData => {
+        this.handleAuthentication(username, resData);
       }));
 
   }
 
- private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
-    console.log(expiresIn);
-    const expirationDate = new Date(new Date().getTime() + expiresIn + 90000);
+  private handleAuthentication(username: string, resData: any) {
+    const expirationDate = new Date(new Date().getTime() + resData.expires_in + 900000);
     console.log(expirationDate);
-    const user = new User(email, userId, token, expirationDate);
+    const user = new User(username, resData.access_token, resData.token_type,resData.refresh_token,resData.scope, expirationDate);
     this.user.next(user);
     console.log(user);
     localStorage.setItem('userData', JSON.stringify(user));
