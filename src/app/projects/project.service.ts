@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Project } from '../model/project.model';
 import { TeamMember } from '../model/team-member.model';
 import { Subject } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+
 @Injectable()
 export class ProjectService {
 
@@ -14,7 +16,7 @@ export class ProjectService {
     new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
   ];
 
-  constructor() { }
+ constructor(private http: HttpClient) { }
 
   public fetchProject() {
     return this.projects.slice();
@@ -30,7 +32,9 @@ export class ProjectService {
   }
 
   public addProjects(project: Project) {
-    this.projects.push(project);
-    this.projectChange.next(this.projects.slice());
+    this.http.post('http://localhost:8080/projects/add',
+      project);
+    //this.projects.push(project);
+    //this.projectChange.next(this.projects.slice());
   }
 }
