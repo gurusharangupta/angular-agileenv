@@ -44,8 +44,7 @@ const appRoutes: Routes = [
     path: 'projects/:id', component: ProjectDetailComponent, canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectOverviewComponent },
       { path: 'teammember', component: TeamMemberComponent },
-      {
-        path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
+      { path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
           [
             { path: 'new', component: UserStoryEditComponent },
             { path: ':id', component: UserStoryDetailComponent },
