@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
@@ -33,15 +33,15 @@ export class AuthService {
 
   login(username: string, password: string) {
     console.log(username);
-    let headers = new HttpHeaders();
-    headers = headers.append("Authorization", "Basic " + btoa("client:secret"));
-    headers = headers.append("Content-Type", "application/x-www-form-urlencoded");
-    headers = headers.append("grant_type", "password");
+   let params = new URLSearchParams();
+    params.append('username',username);
+    params.append('password',password);    
+    params.append('grant_type','password');
+    params.append('client_id','client');
+    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Authorization': 'Basic '+btoa("client:secret")});
     return this.http.post('http://localhost:8080/oauth/token',
-      {
-        username: username,
-        password: password
-      },
+      params.toString(),
       { headers: headers }).pipe(catchError(this.handleError), tap(resData => {
         this.handleAuthentication(username, resData);
       }));
@@ -76,5 +76,12 @@ export class AuthService {
         break;
     }
     return throwError(errorMessage);
+  }
+
+
+  logout() {
+    this.user.next(null);
+    localStorage.removeItem('userData');
+    this.router.navigate(['/auth']);
   }
 }
