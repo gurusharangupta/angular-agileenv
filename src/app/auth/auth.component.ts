@@ -17,19 +17,18 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+ 
     if (!form.valid) {
       return;
     }
 
     const username = form.value.username;
     const password = form.value.password;
-console.log(username);
+
     this.authService.login(username, password).subscribe(
       resData => {
 
         this.router.navigate(['/projects']);
-        console.log(resData);
       },
       errorMessage => {
         this.alertService.setAlert('Error', errorMessage);

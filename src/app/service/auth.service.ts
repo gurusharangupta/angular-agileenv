@@ -32,14 +32,16 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    console.log(username);
-   let params = new URLSearchParams();
-    params.append('username',username);
-    params.append('password',password);    
-    params.append('grant_type','password');
-    params.append('client_id','client');
-    let headers = new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      'Authorization': 'Basic '+btoa("client:secret")});
+
+    let params = new URLSearchParams();
+    params.append('username', username);
+    params.append('password', password);
+    params.append('grant_type', 'password');
+    params.append('client_id', 'client');
+    let headers = new HttpHeaders({
+      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Authorization': 'Basic ' + btoa("client:secret")
+    });
     return this.http.post('http://localhost:8080/oauth/token',
       params.toString(),
       { headers: headers }).pipe(catchError(this.handleError), tap(resData => {
@@ -50,8 +52,7 @@ export class AuthService {
 
   private handleAuthentication(username: string, resData: any) {
     const expirationDate = new Date(new Date().getTime() + resData.expires_in + 900000);
-    console.log(expirationDate);
-    const user = new User(username, resData.access_token, resData.token_type,resData.refresh_token,resData.scope, expirationDate);
+    const user = new User(username, resData.access_token, resData.token_type, resData.refresh_token, resData.scope, expirationDate);
     this.user.next(user);
     console.log(user);
     localStorage.setItem('userData', JSON.stringify(user));
@@ -77,7 +78,27 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
+  autoLogin() {
+    const userData: {
+      email: string,
+      access_token: string,
+      token_type: string,
+      refresh_token: string,
+      scope: string,
+      _tokenExpirationDate: Date
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
 
+    const loadedUser = new User(userData.email,
+     userData.access_token,
+      userData.token_type,
+       userData.refresh_token,
+        userData.scope,
+         new Date(userData._tokenExpirationDate));
+    this.user.next(loadedUser);
+  }
 
   logout() {
     this.user.next(null);

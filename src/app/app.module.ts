@@ -35,13 +35,13 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: 'projects', component: ProjectsComponent, children: [
+    path: 'projects', component: ProjectsComponent, canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectListComponent, pathMatch: 'full' },
       { path: 'new', component: ProjectEditComponent }
     ]
   },
   {
-    path: 'projects/:id', component: ProjectDetailComponent, children: [
+    path: 'projects/:id', component: ProjectDetailComponent, canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectOverviewComponent },
       { path: 'teammember', component: TeamMemberComponent },
       {
@@ -73,12 +73,12 @@ const appRoutes: Routes = [
     AlertComponent,
     LoadingSpinnerComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService,AuthGuardService,
+  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService, AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
 
-  }]
+    }]
 })
 export class AppModule { }

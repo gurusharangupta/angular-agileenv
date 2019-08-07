@@ -6,6 +6,7 @@ export class User {
     private refresh_token: string,
     private scope: string,
     private _tokenExpirationDate: Date) { }
+    
 
   get token() {
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
