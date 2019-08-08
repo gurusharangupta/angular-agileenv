@@ -20,7 +20,7 @@
 
     <ul class="nav navbar-nav navbar-right">
 				
-           <li routerLinkActive="active" style="margin-left:50px;">
+           <li routerLinkActive="active" style="margin-left:50px;" *ngIf="userLoggedIn">
              <a (click)="logout()" style="cursor:pointer" >
                Logout
              </a>
