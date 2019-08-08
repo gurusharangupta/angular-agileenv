@@ -6,13 +6,8 @@ import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../model/user.model';
 
 export interface AuthResponseData {
-  kind: string;
-  idToken: string;
   email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  registered?: boolean;
+  message: string;
 }
 
 @Injectable()
@@ -23,7 +18,7 @@ export class AuthService {
 
   signUp(username: string, password: string) {
 
-    return this.http.post<AuthResponseData>('http://localhost:8080/signup',
+    return this.http.post<AuthResponseData>('http://localhost:8080/user/signup',
       {
         username: username,
         password: password
@@ -59,11 +54,11 @@ export class AuthService {
   }
 
   private handleError(errorRes: HttpErrorResponse) {
-
+    console.log(errorRes);
     let errorMessage = 'An unknown error has occured';
-    console.log(errorRes.error.error.message);
-    if (!errorRes.error || !errorRes.error.error) return throwError(errorMessage);
-    switch (errorRes.error.error.message) {
+    console.log(errorRes.error.message);
+    if (!errorRes.error) return throwError(errorMessage);
+    switch (errorRes.error.message) {
       case 'EMAIL_EXISTS':
         errorMessage = 'This email exists already';
         break;
