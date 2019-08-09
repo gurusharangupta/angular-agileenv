@@ -29,14 +29,15 @@ import { AlertService } from './service/alert.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
 import { AuthGuardService } from './service/auth-guard.service';
-import { ProjectResolverService} from './resolver/project-resolver.service';
+import { ProjectResolverService } from './resolver/project-resolver.service';
+import { ProjectRepository } from './repository/project-repository.service';
 
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: 'projects', component: ProjectsComponent,resolve: [ProjectResolverService], canActivate: [AuthGuardService], children: [
+    path: 'projects', component: ProjectsComponent, resolve: [ProjectResolverService], canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectListComponent, pathMatch: 'full' },
       { path: 'new', component: ProjectEditComponent }
     ]
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     path: 'projects/:id', component: ProjectDetailComponent, canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectOverviewComponent },
       { path: 'teammember', component: TeamMemberComponent },
-      { path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
+      {
+        path: 'userstory', component: UserStoryListComponent, resolve: { UserStoryResolverService }, children:
           [
             { path: 'new', component: UserStoryEditComponent },
             { path: ':id', component: UserStoryDetailComponent },
@@ -73,7 +75,7 @@ const appRoutes: Routes = [
     AlertComponent,
     LoadingSpinnerComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService, AuthGuardService,
+  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService, AuthGuardService, ProjectRepository,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
