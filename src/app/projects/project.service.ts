@@ -4,24 +4,24 @@ import { TeamMember } from '../model/team-member.model';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AuthResponseData } from '../service/auth.service';
+import { ProjectRepository } from '../repository/project-repository.service';
 
 @Injectable()
 export class ProjectService {
 
   projectChange = new Subject<Project[]>();
 
-  projects: Project[] = [
-    new Project('ING-Banking', 'Banking realted to ING', 'Nickolas', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
-    new Project('ING-Payment', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
-    new Project('ING-Wire Transfer', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
-    new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
-  ];
+  projects: Project[] = null;
+  /* new Project('ING-Banking', 'Banking realted to ING', 'Nickolas', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+  new Project('ING-Payment', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+  new Project('ING-Wire Transfer', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+  new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
+]; */
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private projectRepository: ProjectRepository) { }
 
   public fetchProject() {
-    return this.http.get<Project[]>('http://localhost:8080/projects/list');
-    //return this.projects.slice();
+    return this.projects.slice();
   }
 
   public fetchProjectById(index: number) {
@@ -34,9 +34,8 @@ export class ProjectService {
   }
 
   public addProjects(project: Project) {
-    console.log(project);
-    return this.http.post<AuthResponseData>('http://localhost:8080/projects/add',
-      project);
+    this.projectRepository.addProjects(project);
+
     //this.projects.push(project);
     //this.projectChange.next(this.projects.slice());
   }

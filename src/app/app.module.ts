@@ -29,13 +29,14 @@ import { AlertService } from './service/alert.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
 import { AuthGuardService } from './service/auth-guard.service';
+import { ProjectResolverService} from './resolver/project-resolver.service';
 
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: 'projects', component: ProjectsComponent, canActivate: [AuthGuardService], children: [
+    path: 'projects', component: ProjectsComponent,resolve: [ProjectResolverService], canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectListComponent, pathMatch: 'full' },
       { path: 'new', component: ProjectEditComponent }
     ]

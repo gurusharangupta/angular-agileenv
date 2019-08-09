@@ -22,15 +22,7 @@ export class ProjectEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const val = form.value;
     const project = new Project(val.name, val.description, val.owner, val.date, 'sprint-planning', null);
-    this.projectService.addProjects(project).subscribe(
-      resData => {
-        console.log(resData)
-        this.alertService.setSuccessAlert(resData.message);
-      },
-      error => {
-        this.alertService.setErrorAlert(error);
-      }
-    );;
+    this.projectService.addProjects(project);
     this.router.navigate(['../'], { relativeTo: this.routes });
 
   }
