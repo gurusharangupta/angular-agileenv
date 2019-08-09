@@ -9,11 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProjectListComponent implements OnInit {
 
-  projects: Project[] = [];
+  projects: Project[];
   constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
-    this.projects = this.projectService.fetchProject();
+    this.projectService.fetchProject().subscribe(
+      projects => {
+        this.projects = projects;
+      }
+    );
     this.projectService.projectChange.subscribe(projects => {
       this.projects = projects;
     });

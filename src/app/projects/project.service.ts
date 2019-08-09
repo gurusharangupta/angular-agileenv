@@ -20,7 +20,8 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   public fetchProject() {
-    return this.projects.slice();
+    return this.http.get<Project[]>('http://localhost:8080/projects/list');
+    //return this.projects.slice();
   }
 
   public fetchProjectById(index: number) {
