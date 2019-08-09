@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Project } from '../../model/project.model';
 import { ProjectService } from '../project.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../service/alert.service';
 
 @Component({
   selector: 'app-project-edit',
@@ -13,7 +14,7 @@ export class ProjectEditComponent implements OnInit {
 
   @ViewChild('f', { static: true }) projectForm: NgForm;
 
-  constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute) { }
+  constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute, private alertService: AlertService) { }
 
   ngOnInit() {
 
@@ -21,7 +22,15 @@ export class ProjectEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const val = form.value;
     const project = new Project(val.name, val.description, val.owner, val.date, 'sprint-planning', null);
-    this.projectService.addProjects(project);
+    this.projectService.addProjects(project).subscribe(
+      resData => {
+        console.log(resData)
+        this.alertService.setSuccessAlert(resData.message);
+      },
+      error => {
+        this.alertService.setErrorAlert(error);
+      }
+    );;
     this.router.navigate(['../'], { relativeTo: this.routes });
 
   }

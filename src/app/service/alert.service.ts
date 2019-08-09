@@ -10,7 +10,15 @@ export class AlertService {
 
   }
 
-  setAlert(status: string, message: string) {
+  setSuccessAlert(message: string) {
+    let status = 'Success';
+    const alert = { status, message };
+    this.showAlert.next(alert);
+
+  }
+
+  setErrorAlert(message: string) {
+    let status = 'Error';
     const alert = { status, message };
     this.showAlert.next(alert);
 

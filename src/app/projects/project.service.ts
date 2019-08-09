@@ -34,12 +34,8 @@ export class ProjectService {
 
   public addProjects(project: Project) {
     console.log(project);
-    this.http.post<AuthResponseData>('http://localhost:8080/projects/add',
-      project).subscribe(
-        resData => {
-          console.log(resData)
-        }
-      );
+    return this.http.post<AuthResponseData>('http://localhost:8080/projects/add',
+      project);
     //this.projects.push(project);
     //this.projectChange.next(this.projects.slice());
   }

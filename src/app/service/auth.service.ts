@@ -55,7 +55,6 @@ export class AuthService {
   private handleError(errorRes: HttpErrorResponse) {
     console.log(errorRes);
     let errorMessage = 'An unknown error has occured';
-    console.log(errorRes.error.message);
     if (!errorRes.error) return throwError(errorMessage);
     switch (errorRes.error.message) {
       case 'EMAIL_EXISTS':
@@ -68,6 +67,12 @@ export class AuthService {
 
       case 'INVALID_PASSWORD':
         errorMessage = 'This email and password do not match';
+        break;
+    }
+
+    switch (errorRes.error.error) {
+      case 'unauthorized':
+        errorMessage = 'Invalid username or password';
         break;
     }
     return throwError(errorMessage);

@@ -32,11 +32,12 @@ export class SignupComponent implements OnInit {
      this.authService.signUp(email, password).subscribe(
       resData => {
         this.isLoading = false;
+        this.alertService.setSuccessAlert(resData.message);
         this.router.navigate(['/projects']);
         console.log(resData);
       },
       errorMessage => {
-        this.alertService.setAlert('Error', errorMessage);
+        this.alertService.setErrorAlert(errorMessage);
         this.isLoading = false;
 
       }
