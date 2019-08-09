@@ -3,6 +3,7 @@ import { Project } from '../model/project.model';
 import { TeamMember } from '../model/team-member.model';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { AuthResponseData } from '../service/auth.service';
 
 @Injectable()
 export class ProjectService {
@@ -16,7 +17,7 @@ export class ProjectService {
     new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
   ];
 
- constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public fetchProject() {
     return this.projects.slice();
@@ -32,8 +33,13 @@ export class ProjectService {
   }
 
   public addProjects(project: Project) {
-    this.http.post('http://localhost:8080/projects/add',
-      project);
+    console.log(project);
+    this.http.post<AuthResponseData>('http://localhost:8080/projects/add',
+      project).subscribe(
+        resData => {
+          console.log(resData)
+        }
+      );
     //this.projects.push(project);
     //this.projectChange.next(this.projects.slice());
   }

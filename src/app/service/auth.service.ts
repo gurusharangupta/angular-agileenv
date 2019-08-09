@@ -49,7 +49,6 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + resData.expires_in + 900000);
     const user = new User(username, resData.access_token, resData.token_type, resData.refresh_token, resData.scope, expirationDate);
     this.user.next(user);
-    console.log(user);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
