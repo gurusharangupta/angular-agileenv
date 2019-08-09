@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { take } from 'rxjs/operators';
+import { User } from '../model/user.model';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
@@ -9,21 +10,22 @@ export class AuthInterceptorService implements HttpInterceptor {
   constructor(private authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    let token = null;
-    let userObj;
+    
+    let userToken: User = null;
     this.authService.user.pipe(take(1)).subscribe(
       (user) => {
         if (!!user) {
-          token = user.access_token;
+          userToken = user;
         }
       });
-    if (!token) {
+    if (!userToken) {
           return next.handle(req);
         }
 
 
     const modifiedRequest = req.clone({ headers: new HttpHeaders({
-      'Authorization': 'Bearer '+ token
+      'Authorization': 'Bearer '+ userToken.access_token,
+      'Username': userToken.email
     }) });
 
 

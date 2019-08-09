@@ -9,7 +9,7 @@
 							<label for="" style="font-family: Impact;font-size: 20px;">AGILE WORKS</label>
               </a>
            </li>
-           <li routerLinkActive="active" style="margin-left:50px;">
+           <li routerLinkActive="active" style="margin-left:50px;" *ngIf="userLoggedIn">
              <a routerLink="/projects" >
                Projects
              </a>
