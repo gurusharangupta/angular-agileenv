@@ -6,7 +6,7 @@ import { ProjectRepository } from '../repository/project-repository.service';
 
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class ProjectResolverService implements Resolve<Project[]>{
 
   constructor(private projectService: ProjectService, private projectRepository: ProjectRepository ) { }
@@ -15,7 +15,7 @@ export class ProjectResolverService implements Resolve<Project[]>{
     const projects: Project[] = this.projectService.fetchProject();
 
     if (projects.length === 0) {
-      // const id = +this.routes.snapshot.params['id'];
+    console.log(projects.length);
       return this.projectRepository.fetchProject();
     } else {
       return projects;

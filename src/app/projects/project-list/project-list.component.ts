@@ -13,7 +13,7 @@ export class ProjectListComponent implements OnInit {
   constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute) { }
 
   ngOnInit() {
-    this.projectService.fetchProject();
+    this.projects = this.projectService.fetchProject();
     this.projectService.projectChange.subscribe(projects => {
       this.projects = projects;
     });

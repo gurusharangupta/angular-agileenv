@@ -75,7 +75,7 @@ const appRoutes: Routes = [
     AlertComponent,
     LoadingSpinnerComponent],
   bootstrap: [AppComponent],
-  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService, AuthGuardService, ProjectRepository,
+  providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService, AuthGuardService, ProjectRepository,ProjectResolverService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

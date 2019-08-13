@@ -11,16 +11,17 @@ export class ProjectService {
 
   projectChange = new Subject<Project[]>();
 
-  projects: Project[] = null;
+  projects: Project[] = [];
   /* new Project('ING-Banking', 'Banking realted to ING', 'Nickolas', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
   new Project('ING-Payment', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
   new Project('ING-Wire Transfer', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
   new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
 ]; */
 
-  constructor(private http: HttpClient, private projectRepository: ProjectRepository) { }
+  constructor() { }
 
   public fetchProject() {
+    console.log(this.projects);
     return this.projects.slice();
   }
 
@@ -33,10 +34,5 @@ export class ProjectService {
     this.projectChange.next(this.projects.slice());
   }
 
-  public addProjects(project: Project) {
-    this.projectRepository.addProjects(project);
-
-    //this.projects.push(project);
-    //this.projectChange.next(this.projects.slice());
-  }
+ 
 }

@@ -7,5 +7,5 @@ export class Project {
     public owner: string,
     public creationDate: Date,
     public projectPhase: string,
-    public teamMembers: TeamMember[]) { }
+    public teamMembers: TeamMember[]){ }
 }

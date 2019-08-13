@@ -6,19 +6,30 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { AlertService } from '../service/alert.service';
 import { AuthResponseData } from '../service/auth.service';
 import { ProjectService } from '../projects/project.service';
-import {tap } from 'rxjs/operators';
+import {tap,map } from 'rxjs/operators';
+
 
 @Injectable()
 export class ProjectRepository {
 
-  constructor(private http: HttpClient, private projectService: ProjectService, private alertService: AlertService) { }
+/*  projects: Project[] = [
+  new Project('ING-Banking', 'Banking realted to ING', 'Nickolas', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+  new Project('ING-Payment', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+  new Project('ING-Wire Transfer', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')]),
+  new Project('ING-Debit', 'Payments related Banking', 'Gabriel', new Date(), 'sprint-planning', [new TeamMember('Gurusharan', 'Developer')])
+]; */
+
+  constructor(private http: HttpClient, private projectService: ProjectService, private alertService: AlertService) {}
+
 
 
   public fetchProject() {
     return this.http.get<Project[]>('http://localhost:8080/projects/list').pipe(
-            tap(projects => {
-              this.projectService.projects = projects;
-            }));
+        tap(projects => {
+          console.log('Fetch Project: ' + JSON.stringify(projects));
+        this.projectService.projects = projects;
+        }));
+ 
 
   }
 
