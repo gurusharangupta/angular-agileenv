@@ -26,7 +26,6 @@ export class ProjectRepository {
   public fetchProject() {
     return this.http.get<Project[]>('http://localhost:8080/projects/list').pipe(
         tap(projects => {
-          console.log('Fetch Project: ' + JSON.stringify(projects));
         this.projectService.projects = projects;
         }));
  
@@ -34,11 +33,12 @@ export class ProjectRepository {
   }
 
   public addProjects(project: Project) {
-    console.log(project);
     return this.http.post<AuthResponseData>('http://localhost:8080/projects/add',
       project).subscribe(
         resData => {
-          console.log(resData)
+          console.log('Response');
+          console.log(resData.response);
+          this.projectService.addProject(resData.response.body);
           this.alertService.setSuccessAlert(resData.message);
         },
         error => {

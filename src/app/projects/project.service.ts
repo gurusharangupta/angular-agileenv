@@ -34,5 +34,10 @@ export class ProjectService {
     this.projectChange.next(this.projects.slice());
   }
 
- 
+  public addProject(project: Project) {
+    this.projects.push(project);
+    this.projectChange.next(this.projects.slice());
+  }
+
+
 }

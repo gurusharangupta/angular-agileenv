@@ -8,6 +8,7 @@ import { User } from '../model/user.model';
 export interface AuthResponseData {
   email: string;
   message: string;
+  response: any;
 }
 
 @Injectable()
