@@ -2,7 +2,7 @@
 	<div class="col-xs-12">
 		<div class="row bs-wizard" style="border-bottom:0;">
 
-			<div class="col-xs-3 bs-wizard-step complete">
+			<div class="col-xs-3 bs-wizard-step {{project.projectPhase === 'sprint-planning'?'active':'complete'}}">
 				<div class="text-center bs-wizard-stepnum">Spring-Planning</div>
 				<div class="progress">
 					<div class="progress-bar"></div>
@@ -11,7 +11,7 @@
 				<div class="bs-wizard-info text-center">Start of Project</div>
 			</div>
 
-			<div class="col-xs-3 bs-wizard-step active">
+			<div class="col-xs-3 bs-wizard-step {{project.projectPhase === 'sprint-planning'?'disabled':'active'}}">
 				<!-- active complete disabled (bootstrap)-->
 				<div class="text-center bs-wizard-stepnum">Sprint Start</div>
 				<div class="progress">
@@ -21,7 +21,7 @@
 				<div class="bs-wizard-info text-center">Sprint1</div>
 			</div>
 
-			<div class="col-xs-3 bs-wizard-step disabled">
+			<div class="col-xs-3 bs-wizard-step {{project.projectPhase === 'sprint-planning'?'disabled':'active'}}">
 				<!-- active -->
 				<div class="text-center bs-wizard-stepnum">Sprint Complete</div>
 				<div class="progress">
