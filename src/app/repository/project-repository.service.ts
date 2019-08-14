@@ -36,8 +36,6 @@ export class ProjectRepository {
     return this.http.post<AuthResponseData>('http://localhost:8080/projects/add',
       project).subscribe(
         resData => {
-          console.log('Response');
-          console.log(resData.response);
           this.projectService.addProject(resData.response.body);
           this.alertService.setSuccessAlert(resData.message);
         },
@@ -45,8 +43,7 @@ export class ProjectRepository {
           this.alertService.setErrorAlert(error);
         }
       );
-    //this.projects.push(project);
-    //this.projectChange.next(this.projects.slice());
+
   }
 
 
