@@ -46,5 +46,19 @@ export class ProjectRepository {
 
   }
 
+    public addTeamMembers(project: Project) {
+    return this.http.post<AuthResponseData>('http://localhost:8080/projects/teammembers/add',
+      project).subscribe(
+        resData => {
+          this.projectService.addProject(resData.response.body);
+          this.alertService.setSuccessAlert(resData.message);
+        },
+        error => {
+          this.alertService.setErrorAlert(error);
+        }
+      );
+
+  }
+
 
 }

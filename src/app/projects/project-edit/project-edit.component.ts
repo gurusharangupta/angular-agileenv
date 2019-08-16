@@ -21,7 +21,8 @@ export class ProjectEditComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     const val = form.value;
-    const project = new Project(val.name, val.description, val.owner, val.date, 'sprint-planning', null);
+    const project = new Project(null,val.name, val.description, val.owner, val.date, 'sprint-planning', null);
+    console.log(project);
     this.projectRepository.addProjects(project);
     this.router.navigate(['../'], { relativeTo: this.routes });
 

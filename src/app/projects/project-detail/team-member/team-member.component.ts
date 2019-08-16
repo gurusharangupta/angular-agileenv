@@ -3,6 +3,7 @@ import { FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../../project.service';
 import { Project } from '../../../model/project.model';
+import { ProjectRepository } from '../../../repository/project-repository.service';
 
 @Component({
   selector: 'app-team-member',
@@ -14,7 +15,7 @@ export class TeamMemberComponent implements OnInit {
   teamMemberForm: FormGroup;
   id: number;
   project: Project;
-  constructor(private router: Router,private routes: ActivatedRoute, private projectService: ProjectService) { }
+  constructor(private router: Router,private routes: ActivatedRoute, private projectService: ProjectService, private projectRepository: ProjectRepository) { }
 
   ngOnInit() {
     this.routes.parent.params.subscribe(
@@ -59,6 +60,7 @@ export class TeamMemberComponent implements OnInit {
 
   onSubmit() {
     this.project.teamMembers = this.teamMemberForm.get('teamMembers').value;
+    this.projectRepository.addTeamMembers(this.project);
     this.projectService.updateProject(this.id, this.project);
   this.router.navigate(['../'],{relativeTo: this.routes});
   }
