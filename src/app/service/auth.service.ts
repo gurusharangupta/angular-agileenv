@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../model/user.model';
+import { ProjectService } from '../projects/project.service';
 
 export interface AuthResponseData {
   email: string;
@@ -15,7 +16,7 @@ export interface AuthResponseData {
 export class AuthService {
   user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private projectService: ProjectService) { }
 
   signUp(username: string, password: string) {
 
@@ -103,6 +104,10 @@ export class AuthService {
   logout() {
     this.user.next(null);
     localStorage.removeItem('userData');
+    this.projectService.setProjects([]);
     this.router.navigate(['/auth']);
+    
+    
+
   }
 }

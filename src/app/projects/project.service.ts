@@ -39,5 +39,9 @@ export class ProjectService {
     this.projectChange.next(this.projects.slice());
   }
 
+  public setProjects(projects: Project[]) {
+    this.projects = projects;
+  }
+
 
 }
