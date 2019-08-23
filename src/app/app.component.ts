@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from './service/auth.service';
+import { WebsocketService } from './service/websocket.service';
 
 @Component({
   selector: 'my-app',
@@ -10,9 +11,12 @@ import { AuthService } from './service/auth.service';
 export class AppComponent {
   name = 'Angular';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private websocketService: WebsocketService) { }
 
   ngOnInit() {
+    this.websocketService.listen('test-event').subscribe((data) => {
+      console.log(data);
+    });
     this.authService.autoLogin();
   }
 }
