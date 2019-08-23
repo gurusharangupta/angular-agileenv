@@ -14,9 +14,9 @@ export class AppComponent {
   constructor(private authService: AuthService, private websocketService: WebsocketService) { }
 
   ngOnInit() {
-    this.websocketService.getLiveData1().subscribe((data) => {
+   /* this.websocketService.getLiveData1().subscribe((data) => {
       console.log(data);
-    });
+    }); */
     this.authService.autoLogin();
   }
 }

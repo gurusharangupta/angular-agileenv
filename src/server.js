@@ -14,6 +14,9 @@ io.on('connection', (socket) => {
  
 });
 
+$(function(){
+alert('Hello');
+});
 
 
 http.listen(8091, () => {
