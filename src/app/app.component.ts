@@ -16,7 +16,7 @@ export class AppComponent {
   ngOnInit() {
    /* this.websocketService.getLiveData1().subscribe((data) => {
       console.log(data);
-    }); */
+    }); 
     this.authService.autoLogin();
   }
 }

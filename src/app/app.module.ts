@@ -80,8 +80,7 @@ const appRoutes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true,
-      providers: [WebsocketService]
+      multi: true
 
     }]
 })
