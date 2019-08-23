@@ -31,6 +31,7 @@ import { AuthInterceptorService } from './service/auth-interceptor.service';
 import { AuthGuardService } from './service/auth-guard.service';
 import { ProjectResolverService } from './resolver/project-resolver.service';
 import { ProjectRepository } from './repository/project-repository.service';
+import { WebsocketService } from './service/websocket.service';
 
 
 const appRoutes: Routes = [
@@ -79,7 +80,8 @@ const appRoutes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
-      multi: true
+      multi: true,
+      providers: [WebsocketService]
 
     }]
 })
