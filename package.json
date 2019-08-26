@@ -23,6 +23,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "dev":"concurrently node server.js  ng serve --open",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
