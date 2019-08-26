@@ -28,7 +28,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "server.js"
             ]
           },
           "configurations": {
@@ -54,8 +55,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build",
-           "scripts": ["server.js"],
+            "browserTarget": "demo:build"
           },
           "configurations": {
             "production": {
