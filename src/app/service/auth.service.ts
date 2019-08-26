@@ -47,6 +47,24 @@ export class AuthService {
 
   }
 
+  checkRefreshToken(username: string){
+    console.log('Entering refresh token');
+    const userData = this.loggedUser();
+      let params = new URLSearchParams();
+    params.append('grant_type', 'refresh_token');
+    params.append('client_id', 'client');
+     params.append('refresh_token', userData.refresh_token);
+    let headers = new HttpHeaders({
+      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Authorization': 'Basic ' + btoa("client:secret")
+    });
+    return this.http.post('http://localhost:8080/oauth/token',
+      params.toString(),
+      { headers: headers }).pipe(catchError(this.handleError), tap(resData => {
+        this.handleAuthentication(username, resData);
+      }));
+  }
+
   private handleAuthentication(username: string, resData: any) {
     const expirationDate = new Date(new Date().getTime() + resData.expires_in + 900000);
     const user = new User(username, resData.access_token, resData.token_type, resData.refresh_token, resData.scope, expirationDate);
@@ -79,8 +97,9 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
-  autoLogin() {
-    const userData: {
+
+  privateloggedUser(){
+     const userData: {
       email: string,
       access_token: string,
       token_type: string,
@@ -88,6 +107,10 @@ export class AuthService {
       scope: string,
       _tokenExpirationDate: Date
     } = JSON.parse(localStorage.getItem('userData'));
+    return userData;
+  }
+  autoLogin() {
+    const userData = this.loggedUser();
     if (!userData) {
       return;
     }
