@@ -18,7 +18,7 @@ import { SprintPlanningComponent } from './sprint/sprint-planning/sprint-plannin
 import { SprintService } from './sprint/sprint.service';
 import { UserStoryListComponent } from './sprint/sprint-planning/user-story-list/user-story-list.component';
 import { UserStoryEditComponent } from './sprint/sprint-planning/user-story-edit/user-story-edit.component';
-import { UserStoryResolverService } from './sprint/sprint-planning/user-story-list/user-story-resolver.service';
+import { UserStoryResolverService } from './resolver/user-story-resolver.service';
 import { UserStoryDetailComponent } from './sprint/sprint-planning/user-story-detail/user-story-detail.component';
 import { AuthComponent } from './auth/auth.component';
 import { SignupComponent } from './auth/signup/signup.component';
