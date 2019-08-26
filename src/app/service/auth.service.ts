@@ -98,7 +98,7 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  privateloggedUser(){
+  private loggedUser(){
      const userData: {
       email: string,
       access_token: string,

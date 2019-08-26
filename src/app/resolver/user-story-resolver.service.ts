@@ -19,7 +19,6 @@ export class UserStoryResolverService implements Resolve<UserStory[]> {
     this.id = +route.parent.params['id'];
     this.project = this.projectService.fetchProjectById(this.id);
     this.productBacklog = this.sprintService.fetchProductBacklogByProjectName(this.project.name);
-    console.log(this.productBacklog);
     if (!this.productBacklog) {
       this.sprintService.setProductBacklog(this.project.name, [], true);
       return null;
