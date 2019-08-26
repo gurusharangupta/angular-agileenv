@@ -43,7 +43,7 @@ http.listen(8091, () => {
  
 	return consumer.init().then(function () {
 		// Subscribe partitons 0 and 1 in a topic: 
-		var v1= consumer.subscribe('guru', [0, 1], dataHandler);
+		var v1= consumer.subscribe('guru', [0], dataHandler);
 	//	var v2= consumer.subscribe('Sample', [0, 1], dataHandler);
 		var arr=[];
 		arr.push([v1]);
