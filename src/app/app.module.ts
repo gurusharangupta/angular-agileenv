@@ -15,7 +15,7 @@ import { ProjectDetailComponent } from './projects/project-detail/project-detail
 import { TeamMemberComponent } from './projects/project-detail/team-member/team-member.component';
 import { ProjectOverviewComponent } from './projects/project-detail/project-overview/project-overview.component';
 import { SprintPlanningComponent } from './sprint/sprint-planning/sprint-planning.component';
-import { SprintService } from './sprint/sprint.service';
+import { SprintService } from './service/sprint.service';
 import { UserStoryListComponent } from './sprint/sprint-planning/user-story-list/user-story-list.component';
 import { UserStoryEditComponent } from './sprint/sprint-planning/user-story-edit/user-story-edit.component';
 import { UserStoryResolverService } from './resolver/user-story-resolver.service';

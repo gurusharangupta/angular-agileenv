@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserStory } from '../../../model/user-story.model';
-import { SprintService } from '../../sprint.service';
+import { SprintService } from '../../../service/sprint.service';
 import { NgForm } from '@angular/forms';
 
 @Component({

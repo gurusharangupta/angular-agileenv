@@ -1,10 +1,10 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { UserStory } from '../../../model/user-story.model';
-import { SprintService } from '../../sprint.service';
+import { UserStory } from '../model/user-story.model';
+import { SprintService } from '../service/sprint.service';
 import { Injectable } from '@angular/core';
-import { ProjectService } from '../../../projects/project.service';
-import { Project } from '../../../model/project.model';
-import { ProductBacklog } from '../../../model/product-backlog.model';
+import { ProjectService } from '../projects/project.service';
+import { Project } from '../model/project.model';
+import { ProductBacklog } from '../model/product-backlog.model';
 
 @Injectable()
 export class UserStoryResolverService implements Resolve<UserStory[]> {

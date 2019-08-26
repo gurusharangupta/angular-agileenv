@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserStory } from '../../../model/user-story.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SprintService } from '../../sprint.service';
+import { SprintService } from '../../../service/sprint.service';
 
 @Component({
   selector: 'app-user-story-list',

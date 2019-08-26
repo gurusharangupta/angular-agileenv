@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserStory } from '../../../model/user-story.model';
-import { SprintService } from '../../sprint.service';
+import { SprintService } from '../../../service/sprint.service';
 
 @Component({
   selector: 'app-user-story-detail',

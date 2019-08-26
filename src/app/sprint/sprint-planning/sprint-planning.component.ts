@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SprintService } from '../sprint.service';
+import { SprintService } from '../../service/sprint.service';
 import { Project } from '../../model/project.model';
 import { ProductBacklog } from '../../model/product-backlog.model';
 import { Router, ActivatedRoute } from '@angular/router';
