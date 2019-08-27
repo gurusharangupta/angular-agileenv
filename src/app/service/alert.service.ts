@@ -6,9 +6,7 @@ export class AlertService {
 
   public showAlert = new Subject<{ status: string, message: string }>();
 
-  constructor() {
-
-  }
+  constructor() {}
 
   setSuccessAlert(message: string) {
     let status = 'Success';
