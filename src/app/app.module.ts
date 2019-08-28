@@ -40,11 +40,10 @@ const appRoutes: Routes = [
   {
     path: 'projects', component: ProjectsComponent, resolve: [ProjectResolverService], canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectListComponent, pathMatch: 'full' },
-      { path: 'new', component: ProjectEditComponent }
-    ]
-  },
-  {
-    path: 'projects/:id', component: ProjectDetailComponent, canActivate: [AuthGuardService], children: [
+      { path: 'new', component: ProjectEditComponent },
+    
+  
+    {path: ':id', component: ProjectDetailComponent, canActivate: [AuthGuardService], children: [
       { path: '', component: ProjectOverviewComponent },
       { path: 'teammember', component: TeamMemberComponent },
       {
@@ -56,6 +55,7 @@ const appRoutes: Routes = [
 
           ]
       }
+    ]}
     ]
   },
   {
