@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { Notification } from '../model/notification.model';
 import * as io from 'socket.io-client';
 
 
+
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root'
 })
 export class WebsocketService {
- private url = 'http://localhost:8091';
+  private url = 'http://localhost:8091';
   private socket;
 
   sendMessage(message) {
@@ -17,11 +19,12 @@ export class WebsocketService {
   }
 
   getLiveData1() {
+
     let observable = new Observable(observer => {
       this.socket = io.connect(this.url);
       this.socket.on('message', (data) => {
-
-        observer.next(data);
+        const message: Notification = JSON.parse(data.message);
+        observer.next(message);
       });
       return () => {
         this.socket.disconnect();
