@@ -1,7 +1,7 @@
 export class Notification {
 
   constructor(
-    public message: string,
+    public msg: string,
     public name: string){}
 
 }

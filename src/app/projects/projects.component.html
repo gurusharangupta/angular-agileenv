@@ -1,8 +1,15 @@
 <div class="col-xs-12">
-  <div class="col-xs-10"><router-outlet></router-outlet></div>
-  <div class="col-xs-2">
-    Gurusharan
+	<div class="col-xs-10">
+		<router-outlet></router-outlet>
+	</div>
+	<div class="col-xs-2">
+		<div *ngFor="let notification of notifications">
+			<a class="list-group-item clearfix">
+				<div class="pull-left">
+					<h5 class="list-group-item-heading">{{notification.name}}</h5>
+					<p class="list-group-item-text">{{notification.msg}}</p>
+				</div>
+</a>
+    </div>
   </div>
 </div>
-
-

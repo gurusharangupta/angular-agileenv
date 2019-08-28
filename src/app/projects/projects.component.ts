@@ -17,7 +17,8 @@ notifications: Notification[] = [];
 
   ngOnInit() {
   this.websocketService.getLiveData1().subscribe((data: Notification) => {
-      console.log(data); 
+      console.log(data);
+      this.notifications.push(data); 
     });
   }
 
