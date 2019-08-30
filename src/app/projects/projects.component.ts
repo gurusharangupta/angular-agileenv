@@ -22,7 +22,9 @@ notifications: Notification[] = [];
       arrData.forEach(data => {
           notification =  JSON.parse(data.message);
       });
+      if(!!notification){
       this.notifications.push(notification); 
+      }
     });
   }
 
