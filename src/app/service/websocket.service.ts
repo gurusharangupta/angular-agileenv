@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Notification } from '../model/notification.model';
@@ -9,19 +9,21 @@ import * as io from 'socket.io-client';
 @Injectable({
   providedIn: 'root'
 })
-export class WebsocketService {
+export class WebsocketService implements OnInit {
   private url = 'http://localhost:8091';
   private socket;
+
+ ngOnInit() {
+ this.socket = io.connect(this.url);
+ }
 
   sendMessage(message) {
     this.socket.emit('add-message', message);
     console.log("MESSAGE SENT");
   }
 
-  getLiveData1() {
-
+  getNotifications() {
     let observable = new Observable(observer => {
-      this.socket = io.connect(this.url);
        this.socket.on('history-notifications', (data) => {
         observer.next(data);
       });

@@ -13,7 +13,12 @@
              <a routerLink="/projects" >
                Projects
              </a>
-             </li>
+              </li>
+              <li routerLinkActive="active" style="margin-left:50px;" *ngIf="userLoggedIn">
+             <a routerLink="/chatroom" >
+               Chatroom
+             </a>
+              </li>
 
         
     </ul>
