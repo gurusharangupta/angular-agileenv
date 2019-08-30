@@ -22,23 +22,14 @@ export class WebsocketService {
 
     let observable = new Observable(observer => {
       this.socket = io.connect(this.url);
-      this.socket.on('message', (data) => {
-        const message: Notification = JSON.parse(data.message);
-        observer.next(message);
-      });
-      return () => {
-        this.socket.disconnect();
-      }
-    })
-    return observable;
-  }
-  getLiveData2() {
-    let observable = new Observable(observer => {
-      this.socket = io(this.url);
-      this.socket.on('sampleMessage', (data) => {
-
+       this.socket.on('history-notifications', (data) => {
+        console.log(data);
         observer.next(data);
       });
+    /*  this.socket.on('live-notifications', (data) => {
+        console.log(data);
+        observer.next(data);
+      }); */
       return () => {
         this.socket.disconnect();
       }

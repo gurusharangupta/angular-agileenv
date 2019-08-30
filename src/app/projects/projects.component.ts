@@ -16,9 +16,13 @@ notifications: Notification[] = [];
   constructor(private projectService: ProjectService, private router: Router, private routes: ActivatedRoute, private websocketService: WebsocketService) { }
 
   ngOnInit() {
-  this.websocketService.getLiveData1().subscribe((data: Notification) => {
-      console.log(data);
-      this.notifications.push(data); 
+  this.websocketService.getLiveData1().subscribe((arrData: any[]) => {
+    console.log(arrData);
+    let notification: Notification = null;
+      arrData.forEach(data => {
+          notification =  JSON.parse(data.message);
+      });
+      this.notifications.push(notification); 
     });
   }
 
