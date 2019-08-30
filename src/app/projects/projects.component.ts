@@ -21,10 +21,8 @@ notifications: Notification[] = [];
     let notification: Notification = null;
       arrData.forEach(data => {
           notification =  JSON.parse(data.message);
+          this.notifications.push(notification); 
       });
-      if(!!notification){
-      this.notifications.push(notification); 
-      }
     });
   }
 

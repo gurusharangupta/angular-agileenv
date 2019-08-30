@@ -3,13 +3,16 @@
 		<router-outlet></router-outlet>
 	</div>
 	<div class="col-xs-2">
-		<div *ngFor="let notification of notifications">
-			<a class="list-group-item clearfix" >
-				<div class="pull-left">
-					<h5 class="list-group-item-heading">{{notification.name}}</h5>
-					<p class="list-group-item-text">{{notification.msg}}</p>
-				</div>
-</a>
-    </div>
-  </div>
+		<div class="notification-bar">
+      <div style="padding-top:5px;padding-bottom:5px; text-align:center;font-family:verdana;"><h4>Notifications</h4></div>
+			<div *ngFor="let notification of notifications">
+				<a class="list-group-item clearfix" style="margin-top:10px;">
+					<div class="pull-left">
+						<h5 class="list-group-item-heading">{{notification.name}}</h5>
+						<p class="list-group-item-text">{{notification.msg}}</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 </div>

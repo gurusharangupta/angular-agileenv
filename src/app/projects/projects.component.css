@@ -18,3 +18,10 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 20px;
 }
+
+.notification-bar{
+   height:850px;
+   background-color: #f1fcd5;
+    border-radius: 15px!important;
+    padding: 10px;
+}
