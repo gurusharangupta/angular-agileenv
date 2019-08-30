@@ -32,6 +32,7 @@ import { AuthGuardService } from './service/auth-guard.service';
 import { ProjectResolverService } from './resolver/project-resolver.service';
 import { ProjectRepository } from './repository/project-repository.service';
 import { WebsocketService } from './service/websocket.service';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 
 const appRoutes: Routes = [
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     ]}
     ]
   },
+  { path: 'chatroom', component: ChatroomComponent },
   {
     path: '',
     redirectTo: '/auth',
@@ -74,7 +76,8 @@ const appRoutes: Routes = [
     AuthComponent,
     SignupComponent,
     AlertComponent,
-    LoadingSpinnerComponent],
+    LoadingSpinnerComponent,
+    ChatroomComponent],
   bootstrap: [AppComponent],
   providers: [ProjectService, SprintService, UserStoryResolverService, AuthService, AlertService, AuthGuardService, ProjectRepository,ProjectResolverService,
     {
