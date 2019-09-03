@@ -111,6 +111,7 @@ export class AuthService {
   }
   autoLogin() {
     const userData = this.loggedUser();
+    
     if (!userData) {
       return;
     }
@@ -122,6 +123,7 @@ export class AuthService {
       userData.scope,
       new Date(userData._tokenExpirationDate));
     this.user.next(loadedUser);
+    //this.router.navigate(['/projects']);
   }
 
   logout() {

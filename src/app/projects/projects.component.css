@@ -24,4 +24,5 @@
    background-color: #fff4e9;
     border-radius: 15px!important;
     padding: 10px;
+     overflow-y: scroll;
 }

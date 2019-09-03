@@ -17,7 +17,6 @@ notifications: Notification[] = [];
 
   ngOnInit() {
   this.websocketService.getNotifications().subscribe((arrData: any[]) => {
-    console.log(arrData);
     let notification: Notification = null;
       arrData.forEach(data => {
           notification =  JSON.parse(data.message);

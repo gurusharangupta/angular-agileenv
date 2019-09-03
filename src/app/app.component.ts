@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { WebsocketService } from './service/websocket.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'my-app',
@@ -11,10 +12,10 @@ import { WebsocketService } from './service/websocket.service';
 export class AppComponent {
   name = 'Angular';
 
-  constructor(private authService: AuthService, private websocketService: WebsocketService) { }
+  constructor(private authService: AuthService, private websocketService: WebsocketService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
- 
     this.authService.autoLogin();
   }
+
 }

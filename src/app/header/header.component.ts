@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -12,13 +12,10 @@ export class HeaderComponent implements OnInit {
 
   userLoggedIn = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    if (!!this.authService.user.getValue()) {
-
-      this.router.navigate(['/projects']);
-    }
+    
 
     this.authService.user.subscribe(
       user => {
