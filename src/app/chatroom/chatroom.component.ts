@@ -11,6 +11,10 @@ export class ChatroomComponent implements OnInit {
   constructor(private websocketService: WebsocketService) { }
 
   ngOnInit() {
-    
+    this.websocketService.connectToChatroom().subscribe(
+      data => {
+        
+      }
+    );
   }
 }

@@ -41,10 +41,7 @@ export class WebsocketService implements OnInit {
   connectToChatroom() {
     let observable = new Observable(observer => {
       this.socket = io.connect(this.url);
-      this.socket.on('history-notifications', (data) => {
-        observer.next(data);
-      });
-      this.socket.on('live-notifications', (data) => {
+      this.socket.on('chatroom', (data) => {
         observer.next(data);
       });
       return () => {
