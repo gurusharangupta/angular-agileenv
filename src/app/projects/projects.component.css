@@ -21,8 +21,7 @@
 
 .notification-bar{
    height:850px;
-   background-color: #fff4e9;
-    border-radius: 15px!important;
+   border-radius: 15px!important;
     padding: 10px;
-     overflow-y: scroll;
+   border:1px solid #eee;
 }

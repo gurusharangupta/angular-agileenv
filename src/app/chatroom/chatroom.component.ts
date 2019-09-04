@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WebsocketService } from '../service/websocket.service';
 import { Notification } from '../model/notification.model';
 import { AuthService } from '../service/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../service/auth.service';
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.css']
 })
-export class ChatroomComponent implements OnInit {
+export class ChatroomComponent implements OnInit,OnDestroy {
 
   chatMessages: Notification[] = [];
   message: string;
@@ -19,7 +19,7 @@ export class ChatroomComponent implements OnInit {
   ngOnInit() {
     this.websocketService.connectToChatroom().subscribe(
       data => {
-       this.chatMessages.push(data.message);
+        this.chatMessages.push(data.message);
       }
     );
     this.currentUser = this.authService.user.getValue().email;
@@ -27,6 +27,10 @@ export class ChatroomComponent implements OnInit {
 
   sendMessage() {
     this.websocketService.sendMessage(this.message);
+  }
+
+  ngOnDestroy(){
+    this.websocketService.disconnectFromChatroom();
   }
 
 }

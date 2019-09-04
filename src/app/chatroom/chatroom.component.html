@@ -1,8 +1,8 @@
 <div class="col-xs-12">
-<div class="col-xs-5">
-  <div class="row" style="height:650px;">
-    <div *ngFor="let msg of chatMessages">
-      <b>{{msg.name === currentUser?'You':msg.name}}</b>: <i>{{msg.message}}</i>
+	<div class="col-xs-5">
+		<div class="row" style="height:650px;">
+			<div *ngFor="let msg of chatMessages">
+				<b>{{msg.name === currentUser?'You':msg.name}}</b>: <i>{{msg.message}}</i>
     </div>
   </div>
   <div class="row">
@@ -11,5 +11,14 @@
         Send
       </button>
   </div>
+  </div>
+  <div class="col-xs-5">
+
+  </div>
+  <div class="col-xs-2">
+  <div class="row" style="height:650px; border:1px solid #eee">
+
+  </div>
+  
   </div>
 </div>
