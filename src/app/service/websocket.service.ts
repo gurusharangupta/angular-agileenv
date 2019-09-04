@@ -18,19 +18,19 @@ export class WebsocketService implements OnInit {
   }
 
   constructor(private authService: AuthService) {
- this.socket = io.connect(this.url);
- 
+    this.socket = io.connect(this.url);
+
   }
 
   sendMessage(msg) {
-   const email = this.authService.user.getValue().email;
+    const email = this.authService.user.getValue().email;
     this.socket.emit('chat', { name: email, message: msg });
-    console.log("MESSAGE SENT");
+
   }
 
   getNotifications() {
     let observable = new Observable(observer => {
-       //   this.socket = io.connect(this.url);
+      //   this.socket = io.connect(this.url);
       this.socket.on('history-notifications', (data) => {
         observer.next(data);
       });
@@ -46,7 +46,7 @@ export class WebsocketService implements OnInit {
 
   connectToChatroom() {
     let observable = new Observable(observer => {
-     //  this.socket = io.connect(this.url);
+      //  this.socket = io.connect(this.url);
 
       this.socket.on('chat', (data) => {
         observer.next(data);
