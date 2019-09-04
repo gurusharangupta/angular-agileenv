@@ -19,9 +19,7 @@ export class ChatroomComponent implements OnInit {
   ngOnInit() {
     this.websocketService.connectToChatroom().subscribe(
       data => {
-        console.log(data.message);
-
-        this.chatMessages.push(data.message);
+       this.chatMessages.push(data.message);
       }
     );
     this.currentUser = this.authService.user.getValue().email;
