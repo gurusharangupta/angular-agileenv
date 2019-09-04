@@ -17,7 +17,13 @@
   </div>
   <div class="col-xs-2">
   <div class="row" style="height:650px; border:1px solid #eee">
-
+    <h4 style="text-align:center;">Connected Users</h4>
+    <hr>
+     <a class="list-group-item clearfix" *ngFor="let user of chatUsers" style="padding:15px; border-radius: 5px!important;">
+    <div class="pull-left">
+      <h5 class="list-group-item-heading"> {{user}}</h5>
+    </div>
+  </a>
   </div>
   
   </div>

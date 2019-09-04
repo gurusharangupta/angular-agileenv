@@ -47,7 +47,7 @@ export class WebsocketService implements OnInit {
   connectToChatroom() {
     let observable = new Observable(observer => {
       //  this.socket = io.connect(this.url);
-      this.socket.emit('connect-client',this.authService.user.getValue().email);
+      this.socket.emit('connect-client', this.authService.user.getValue().email);
 
       this.socket.on('chat', (data) => {
         observer.next(data);
@@ -59,8 +59,21 @@ export class WebsocketService implements OnInit {
     return observable;
   }
 
-  disconnectFromChatroom(){
-    this.socket.emit('disconnect-client',this.authService.user.getValue().email);
+  chatroomUsers() {
+    let observable = new Observable(observer => {
+
+      this.socket.on('client-list', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      }
+    });
+    return observable;
+  }
+
+  disconnectFromChatroom() {
+    this.socket.emit('disconnect-client', this.authService.user.getValue().email);
   }
 
 
