@@ -1,9 +1,13 @@
 <div class="col-xs-12">
 <div class="col-xs-5">
-  <div class="row" style="height:650px;">Content</div>
+  <div class="row" style="height:650px;">
+    <div *ngFor="let msg of chatMessages">
+      <b>{{msg.name === currentUser?'You':msg.name}}</b>: <i>{{msg.message}}</i>
+    </div>
+  </div>
   <div class="row">
-      <textarea name="description" id="description" cols="10" rows="8" class="form-control" name="description" ngModel></textarea>
-     <button type="button" class="btn btn-success"  >
+      <textarea name="description" id="description" cols="10" rows="8" class="form-control" [(ngModel)]="message"></textarea>
+     <button type="button" class="btn btn-success" (click)="sendMessage()"  >
         Send
       </button>
   </div>
