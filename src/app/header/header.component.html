@@ -24,8 +24,13 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-				
+			<li  *ngIf="userLoggedIn">
+             <a style="cursor:pointer" >
+               <i>{{userId}}</i>
+             </a>
+             </li>
            <li routerLinkActive="active" style="margin-left:50px;" *ngIf="userLoggedIn">
+            
              <a (click)="logout()" style="cursor:pointer" >
                Logout
              </a>
