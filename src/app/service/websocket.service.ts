@@ -13,8 +13,9 @@ import * as io from 'socket.io-client';
 export class WebsocketService implements OnInit {
   private url = 'http://localhost:8091';
   private socket;
+  private userId;
   ngOnInit() {
-
+    this.userId = this.authService.user.getValue().email;
   }
 
   constructor(private authService: AuthService) {
@@ -23,7 +24,7 @@ export class WebsocketService implements OnInit {
   }
 
   sendMessage(msg) {
-    const email = this.authService.user.getValue().email;
+    const email = this.userId;
     this.socket.emit('chat', { name: email, message: msg });
 
   }
