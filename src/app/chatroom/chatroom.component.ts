@@ -26,7 +26,6 @@ export class ChatroomComponent implements OnInit, OnDestroy {
 
     this.websocketService.chatroomUsers().subscribe(
       data => {
-        console.log(data);
         this.chatUsers = data;
       }
     );
