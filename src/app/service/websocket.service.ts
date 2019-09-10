@@ -16,6 +16,7 @@ export class WebsocketService implements OnInit {
   private userId;
   ngOnInit() {
     this.userId = this.authService.user.getValue().email;
+    console.log(this.userId);
   }
 
   constructor(private authService: AuthService) {
