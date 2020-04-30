@@ -12,7 +12,7 @@
     "@angular/router": "8.0.2",
     "bootstrap": "3.4.1",
     "core-js": "2.6.9",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "no-kafka": "^3.4.3",
     "popper.js": "1.15.0",
     "reflect-metadata": "^0.1.13",
